@@ -3,117 +3,121 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Globe, ArrowRight } from 'lucide-react';
 
+const springTransition = { type: "spring", stiffness: 300, damping: 30 };
+
 export default function Login() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-mesh flex">
-      {/* Form Side */}
-      <div className="w-full lg:w-1/2 flex flex-col justify-center px-8 sm:px-16 md:px-24 xl:px-32 relative z-10">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-md w-full mx-auto"
-        >
-          <div className="flex items-center gap-2 mb-12 cursor-pointer" onClick={() => navigate('/')}>
-            <Globe className="w-6 h-6 text-primary" />
-            <span className="font-bold text-xl tracking-tight text-primary">SatQuery AI</span>
+    <div className="min-h-screen bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-indigo-50 via-white to-blue-50 font-sans flex items-center justify-center p-6 selection:bg-blue-200">
+      
+      <motion.div 
+        initial={{ opacity: 0, y: 20, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={springTransition}
+        className="w-full max-w-5xl bg-white/60 backdrop-blur-3xl border border-white/60 rounded-[2.5rem] shadow-[0_20px_50px_rgb(0,0,0,0.05)] overflow-hidden flex flex-col lg:flex-row"
+      >
+        {/* Form Side */}
+        <div className="w-full lg:w-1/2 p-12 lg:p-16 flex flex-col justify-center bg-white/40">
+          <div className="max-w-sm w-full mx-auto">
+            <div className="flex items-center gap-3 mb-12 cursor-pointer" onClick={() => navigate('/')}>
+              <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center shadow-md">
+                <Globe className="w-5 h-5 text-white" />
+              </div>
+              <span className="font-bold text-2xl tracking-tight text-gray-800">SatQuery AI</span>
+            </div>
+
+            <h2 className="text-4xl font-bold text-gray-900 mb-3 tracking-tight">Welcome back</h2>
+            <p className="text-gray-500 mb-10 font-medium text-lg">Sign in to your enterprise account.</p>
+
+            <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); navigate('/dashboard'); }}>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Work Email</label>
+                <input 
+                  type="email" 
+                  placeholder="name@company.com" 
+                  className="w-full px-5 py-4 bg-white/70 backdrop-blur-md border border-white/60 rounded-2xl focus:outline-none focus:bg-white focus:border-blue-500/30 focus:ring-4 focus:ring-blue-500/10 transition-all shadow-sm text-gray-800 placeholder-gray-400"
+                />
+              </div>
+              <div>
+                <div className="flex justify-between items-center mb-2">
+                  <label className="block text-sm font-semibold text-gray-700">Password</label>
+                  <a href="#" className="text-sm text-blue-600 hover:text-blue-700 font-semibold transition-colors">Forgot password?</a>
+                </div>
+                <input 
+                  type="password" 
+                  placeholder="••••••••" 
+                  className="w-full px-5 py-4 bg-white/70 backdrop-blur-md border border-white/60 rounded-2xl focus:outline-none focus:bg-white focus:border-blue-500/30 focus:ring-4 focus:ring-blue-500/10 transition-all shadow-sm text-gray-800 placeholder-gray-400"
+                />
+              </div>
+
+              <motion.button 
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                type="submit"
+                className="w-full bg-blue-600 text-white py-4 rounded-2xl text-lg font-bold hover:bg-blue-700 transition-colors shadow-[0_8px_30px_rgba(37,99,235,0.24)] flex items-center justify-center gap-2 mt-2"
+              >
+                Sign In <ArrowRight className="w-5 h-5" />
+              </motion.button>
+
+              <div className="pt-4">
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-gray-200" />
+                  </div>
+                  <div className="relative flex justify-center text-sm">
+                    <span className="px-4 bg-white/0 backdrop-blur-md text-gray-500 font-medium">Or</span>
+                  </div>
+                </div>
+              </div>
+
+              <motion.button 
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                type="button"
+                onClick={() => navigate('/dashboard')}
+                className="w-full bg-white border border-gray-200 py-4 rounded-2xl text-lg font-bold text-gray-700 hover:bg-gray-50 transition-colors shadow-sm flex items-center justify-center gap-2"
+              >
+                Quick Demo Login
+              </motion.button>
+            </form>
+
+            <p className="mt-10 text-center text-gray-500 font-medium">
+              Don't have an account?{' '}
+              <button onClick={() => navigate('/register')} className="text-blue-600 font-bold hover:text-blue-700 transition-colors">
+                Request Access
+              </button>
+            </p>
           </div>
-
-          <h2 className="text-3xl font-bold text-primary mb-2 tracking-tight">Welcome back</h2>
-          <p className="text-neutral mb-8">Sign in to your enterprise account to continue.</p>
-
-          <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); navigate('/dashboard'); }}>
-            <div>
-              <label className="block text-sm font-semibold text-primary mb-1.5">Work Email</label>
-              <input 
-                type="email" 
-                placeholder="name@company.com" 
-                className="w-full px-4 py-3 bg-surface border border-border rounded-lg focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-all shadow-sm"
-              />
-            </div>
-            <div>
-              <div className="flex justify-between items-center mb-1.5">
-                <label className="block text-sm font-semibold text-primary">Password</label>
-                <a href="#" className="text-xs text-secondary hover:underline font-medium">Forgot password?</a>
-              </div>
-              <input 
-                type="password" 
-                placeholder="••••••••" 
-                className="w-full px-4 py-3 bg-surface border border-border rounded-lg focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-all shadow-sm"
-              />
-            </div>
-
-            <motion.button 
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.99 }}
-              type="submit"
-              className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors shadow-md flex items-center justify-center gap-2"
-            >
-              Sign In <ArrowRight className="w-4 h-4" />
-            </motion.button>
-
-            <div className="pt-2">
-              <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-border" />
-                </div>
-                <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-mesh text-neutral">Or</span>
-                </div>
-              </div>
-            </div>
-
-            <motion.button 
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.99 }}
-              type="button"
-              onClick={() => navigate('/dashboard')}
-              className="w-full bg-white text-primary border border-border py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors shadow-sm flex items-center justify-center gap-2"
-            >
-              Quick Demo Login
-            </motion.button>
-          </form>
-
-          <p className="mt-8 text-center text-sm text-neutral">
-            Don't have an account?{' '}
-            <button onClick={() => navigate('/register')} className="text-secondary font-semibold hover:underline">
-              Request Access
-            </button>
-          </p>
-        </motion.div>
-      </div>
-
-      {/* Visual Side */}
-      <div className="hidden lg:flex w-1/2 relative bg-primary overflow-hidden items-center justify-center">
-        <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1541888062835-2d10331bc40c?q=80&w=2074&auto=format&fit=crop" 
-            alt="Satellite View" 
-            className="w-full h-full object-cover opacity-60 mix-blend-overlay"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent" />
         </div>
-        
-        <motion.div 
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative z-10 max-w-lg p-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl"
-        >
-          <div className="flex gap-2 mb-6">
-            {[1,2,3,4,5].map(i => <div key={i} className="w-1.5 h-1.5 rounded-full bg-white/50" />)}
+
+        {/* Visual Side */}
+        <div className="hidden lg:block lg:w-1/2 relative bg-gray-100 p-2">
+          <div className="absolute inset-2 rounded-[2rem] overflow-hidden">
+            <img 
+              src="https://images.unsplash.com/photo-1541888062835-2d10331bc40c?q=80&w=2074&auto=format&fit=crop" 
+              alt="Satellite View" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-blue-900/20 mix-blend-multiply" />
+            
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ ...springTransition, delay: 0.2 }}
+              className="absolute bottom-12 left-12 right-12 p-8 bg-white/20 backdrop-blur-2xl border border-white/40 rounded-3xl shadow-[0_20px_50px_rgb(0,0,0,0.1)]"
+            >
+              <p className="text-xl text-white font-medium leading-relaxed mb-6">
+                "SatQuery AI has fundamentally transformed how our analyst teams approach spatial data. The zero-shot capabilities are simply unparalleled in the industry."
+              </p>
+              <div>
+                <p className="text-white font-bold">Sarah Jenkins</p>
+                <p className="text-white/80 text-sm font-medium">Director of Global Intelligence, Stratos Corp</p>
+              </div>
+            </motion.div>
           </div>
-          <p className="text-2xl text-white font-medium leading-relaxed mb-6">
-            "SatQuery AI has fundamentally transformed how our analyst teams approach spatial data. The zero-shot capabilities are simply unparalleled in the industry."
-          </p>
-          <div>
-            <p className="text-white font-bold">Sarah Jenkins</p>
-            <p className="text-white/70 text-sm">Director of Global Intelligence, Stratos Corp</p>
-          </div>
-        </motion.div>
-      </div>
+        </div>
+      </motion.div>
     </div>
   );
 }
