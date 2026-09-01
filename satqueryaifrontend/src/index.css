@@ -2,10 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    @apply bg-background text-primary antialiased m-0 p-0 overflow-x-hidden font-sans;
-  }
+body {
+  background-color: #F8FAFC; /* background */
+  color: #0F172A; /* primary */
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bg-mesh {
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(213, 100%, 95%, 1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(213, 100%, 97%, 1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(213, 100%, 94%, 1) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(213, 100%, 96%, 1) 0px, transparent 50%);
+  background-color: #F8FAFC;
 }
 
 /* MapLibre overrides */
