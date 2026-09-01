@@ -256,9 +256,9 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Security Section */}
-      <section id="security" className="py-32 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-8 relative z-10 text-center">
+      {/* Security & Compliance Section */}
+      <section id="security" className="py-24 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-8 text-center">
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -272,31 +272,31 @@ export default function LandingPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl font-bold mb-6 text-gray-900 dark:text-white tracking-tight"
+            className="text-4xl font-extrabold mb-4 text-gray-900 dark:text-white tracking-tight"
           >
-            Military-grade security.
+            Military-Grade Security & Compliance
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-12 font-medium"
+            className="text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-16 font-medium"
           >
-            Your data is your most valuable asset. We employ end-to-end encryption, strict access controls, and regular third-party audits to ensure total compliance.
+            Your data is your most valuable asset. We employ end-to-end encryption, strict access controls, air-gapped options, and zero-trust architecture.
           </motion.p>
+
           <motion.div 
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="grid md:grid-cols-4 gap-6 text-left"
+            className="grid grid-cols-2 md:grid-cols-4 gap-6"
           >
-            {['SOC 2 Type II', 'ISO 27001', 'GDPR Compliant', 'End-to-End Encryption'].map((cert, i) => (
+            {["SOC2 Type II", "ISO 27001", "HIPAA Compliant", "GDPR Ready"].map((cert, index) => (
               <motion.div 
-                key={i} 
+                key={index}
                 variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
-                className="bg-white/70 dark:bg-slate-900/50 backdrop-blur-3xl border border-white/60 dark:border-white/10 p-6 rounded-3xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_8px_30px_rgba(0,0,0,0.4)]"
+                className="p-8 bg-white/40 dark:bg-slate-900/40 backdrop-blur-3xl border border-white/60 dark:border-white/10 rounded-3xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] text-center flex flex-col items-center justify-center hover:bg-white/60 dark:hover:bg-slate-900/60 transition-colors"
               >
                 <Lock className="w-6 h-6 text-blue-500 dark:text-blue-400 mb-4" />
                 <h4 className="font-bold text-gray-900 dark:text-white tracking-tight">{cert}</h4>
@@ -316,7 +316,7 @@ export default function LandingPage() {
           className="max-w-5xl mx-auto px-8 text-center relative z-10"
         >
           <div className="bg-blue-600 dark:bg-blue-700 rounded-[3rem] p-16 shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_20px_50px_rgba(37,99,235,0.3)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden relative">
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop')] opacity-10 bg-cover bg-center mix-blend-overlay" />
+            <div className="absolute inset-0 bg-[url('https://upload.wikimedia.org/wikipedia/commons/b/ba/The_earth_at_night.jpg')] opacity-20 bg-cover bg-center mix-blend-overlay" />
             
             <h2 className="text-5xl font-extrabold text-white mb-6 tracking-tight relative z-10">Ready to see the unseen?</h2>
             <p className="text-xl text-blue-100 mb-10 font-medium max-w-2xl mx-auto relative z-10">
@@ -333,6 +333,64 @@ export default function LandingPage() {
           </div>
         </motion.div>
       </section>
+
+      {/* World-Class Apple HIG Footer */}
+      <footer className="bg-white/40 dark:bg-slate-950/60 backdrop-blur-3xl border-t border-gray-200/50 dark:border-white/10 py-16 transition-colors">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-10 mb-16">
+            <div className="md:col-span-2">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center shadow-md">
+                  <Globe className="w-5 h-5 text-white" />
+                </div>
+                <span className="font-extrabold text-xl tracking-tight text-gray-900 dark:text-white">SatQuery AI</span>
+              </div>
+              <p className="text-gray-500 dark:text-gray-400 text-sm font-medium leading-relaxed max-w-sm">
+                Next-generation spatial intelligence platform powered by zero-shot multimodal vision language models. Penetrate cloud cover, analyze bi-temporal changes, and ground spatial features instantly.
+              </p>
+            </div>
+            
+            <div>
+              <h4 className="font-extrabold text-gray-900 dark:text-white text-sm uppercase tracking-wider mb-5">Product</h4>
+              <ul className="space-y-3 text-sm font-semibold text-gray-500 dark:text-gray-400">
+                <li><a href="#features" className="hover:text-blue-600 dark:hover:text-white transition-colors">Spatial VQA</a></li>
+                <li><a href="#features" className="hover:text-blue-600 dark:hover:text-white transition-colors">Text Grounding</a></li>
+                <li><a href="#features" className="hover:text-blue-600 dark:hover:text-white transition-colors">Bi-Temporal Change</a></li>
+                <li><a href="#features" className="hover:text-blue-600 dark:hover:text-white transition-colors">SAR Fusion</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-extrabold text-gray-900 dark:text-white text-sm uppercase tracking-wider mb-5">Resources</h4>
+              <ul className="space-y-3 text-sm font-semibold text-gray-500 dark:text-gray-400">
+                <li><a href="#" className="hover:text-blue-600 dark:hover:text-white transition-colors">Documentation</a></li>
+                <li><a href="#" className="hover:text-blue-600 dark:hover:text-white transition-colors">API Reference</a></li>
+                <li><a href="#" className="hover:text-blue-600 dark:hover:text-white transition-colors">ISRO Guidelines</a></li>
+                <li><a href="#" className="hover:text-blue-600 dark:hover:text-white transition-colors">Research Papers</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-extrabold text-gray-900 dark:text-white text-sm uppercase tracking-wider mb-5">Enterprise</h4>
+              <ul className="space-y-3 text-sm font-semibold text-gray-500 dark:text-gray-400">
+                <li><a href="#security" className="hover:text-blue-600 dark:hover:text-white transition-colors">Security & SOC2</a></li>
+                <li><a href="#" className="hover:text-blue-600 dark:hover:text-white transition-colors">Air-gapped Setup</a></li>
+                <li><a href="#" className="hover:text-blue-600 dark:hover:text-white transition-colors">Privacy Policy</a></li>
+                <li><a href="#" className="hover:text-blue-600 dark:hover:text-white transition-colors">Terms of Service</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="pt-8 border-t border-gray-200/50 dark:border-white/10 flex flex-col md:flex-row justify-between items-center text-sm font-semibold text-gray-400 dark:text-gray-500 gap-4">
+            <p>© {new Date().getFullYear()} SatQuery AI Inc. Built for High-Performance Geospatial Intelligence.</p>
+            <div className="flex gap-6">
+              <a href="#" className="hover:text-gray-600 dark:hover:text-gray-300 transition-colors">Privacy</a>
+              <a href="#" className="hover:text-gray-600 dark:hover:text-gray-300 transition-colors">Terms</a>
+              <a href="#" className="hover:text-gray-600 dark:hover:text-gray-300 transition-colors">Security</a>
+            </div>
+          </div>
+        </div>
+      </footer>
 
     </div>
   );

@@ -130,24 +130,24 @@ export default function Login() {
         <div className="hidden lg:block lg:w-1/2 relative bg-gray-100 dark:bg-slate-800 p-2 transition-colors">
           <div className="absolute inset-2 rounded-[2rem] overflow-hidden shadow-[inset_0_0_20px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_0_20px_rgba(0,0,0,0.5)]">
             <img 
-              src="https://images.unsplash.com/photo-1541888062835-2d10331bc40c?q=80&w=2074&auto=format&fit=crop" 
+              src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" 
               alt="Satellite View" 
               className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000 ease-out"
             />
-            <div className="absolute inset-0 bg-blue-900/20 mix-blend-multiply dark:mix-blend-screen" />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/40 to-transparent" />
             
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...springTransition, delay: 0.4 }}
-              className="absolute bottom-12 left-12 right-12 p-8 bg-white/20 dark:bg-slate-900/40 backdrop-blur-3xl border border-white/40 dark:border-white/10 rounded-3xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_20px_50px_rgb(0,0,0,0.1)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_20px_50px_rgba(0,0,0,0.5)]"
+              className="absolute bottom-12 left-12 right-12 p-8 bg-slate-900/60 dark:bg-slate-950/70 backdrop-blur-3xl border border-white/20 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
             >
-              <p className="text-xl text-white font-medium leading-relaxed mb-6 drop-shadow-sm">
+              <p className="text-xl text-white font-semibold leading-relaxed mb-6 drop-shadow-md">
                 "SatQuery AI has fundamentally transformed how our analyst teams approach spatial data. The zero-shot capabilities are simply unparalleled in the industry."
               </p>
               <div>
-                <p className="text-white font-bold drop-shadow-sm">Sarah Jenkins</p>
-                <p className="text-white/80 text-sm font-medium">Director of Global Intelligence, Stratos Corp</p>
+                <p className="text-white font-extrabold text-lg drop-shadow-md">Sarah Jenkins</p>
+                <p className="text-blue-300 text-sm font-semibold">Director of Global Intelligence, Stratos Corp</p>
               </div>
             </motion.div>
           </div>

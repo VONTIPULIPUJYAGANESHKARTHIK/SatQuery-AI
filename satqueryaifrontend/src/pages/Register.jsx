@@ -130,30 +130,30 @@ export default function Register() {
         <div className="hidden lg:block lg:w-1/2 relative bg-gray-100 dark:bg-slate-800 p-2 transition-colors">
           <div className="absolute inset-2 rounded-[2rem] overflow-hidden shadow-[inset_0_0_20px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_0_20px_rgba(0,0,0,0.5)]">
             <img 
-              src="https://images.unsplash.com/photo-1493606371202-6275828f90f3?q=80&w=2070&auto=format&fit=crop" 
+              src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Earth_Eastern_Hemisphere.jpg" 
               alt="Data Analysis" 
               className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000 ease-out"
             />
-            <div className="absolute inset-0 bg-blue-900/30 mix-blend-multiply dark:mix-blend-screen" />
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/40 to-slate-950/90" />
             
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...springTransition, delay: 0.4 }}
-              className="absolute top-12 left-12 right-12 p-8 bg-white/20 dark:bg-slate-900/40 backdrop-blur-3xl border border-white/40 dark:border-white/10 rounded-3xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_20px_50px_rgb(0,0,0,0.1)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_20px_50px_rgba(0,0,0,0.5)]"
+              className="absolute top-12 left-12 right-12 p-8 bg-slate-900/70 dark:bg-slate-950/80 backdrop-blur-3xl border border-white/20 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
             >
-              <h3 className="text-3xl font-bold text-white mb-6 leading-tight drop-shadow-sm">
+              <h3 className="text-3xl font-extrabold text-white mb-6 leading-tight drop-shadow-md tracking-tight">
                 Unlock planetary-scale insights in seconds.
               </h3>
-              <ul className="space-y-4 text-white/90">
+              <ul className="space-y-4 text-gray-100">
                 {[
                   "Access 50+ petabytes of archived geospatial data",
                   "Deploy zero-shot anomaly detection models instantly",
                   "Integrate securely with existing enterprise workflows"
                 ].map((feature, i) => (
-                  <li key={i} className="flex items-center gap-3 font-medium">
-                    <div className="w-8 h-8 rounded-full bg-blue-500/30 backdrop-blur-md flex items-center justify-center shrink-0 border border-white/30 shadow-inner">
-                      <div className="w-2.5 h-2.5 rounded-full bg-white shadow-sm" />
+                  <li key={i} className="flex items-center gap-3 font-semibold text-sm">
+                    <div className="w-8 h-8 rounded-full bg-blue-600/40 backdrop-blur-md flex items-center justify-center shrink-0 border border-blue-400/40 shadow-inner">
+                      <div className="w-2.5 h-2.5 rounded-full bg-blue-300 shadow-sm" />
                     </div>
                     <span className="drop-shadow-sm">{feature}</span>
                   </li>

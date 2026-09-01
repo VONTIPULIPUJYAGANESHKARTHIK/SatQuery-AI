@@ -236,11 +236,44 @@ export default function Dashboard() {
           </motion.button>
         </div>
       </motion.div>
-      <motion.div variants={viewItemVariants} className="w-full lg:w-2/3 bg-white/70 dark:bg-slate-900/50 backdrop-blur-3xl border border-white/60 dark:border-white/10 rounded-[2.5rem] shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_8px_30px_rgba(0,0,0,0.4)] overflow-hidden relative min-h-[500px] transition-colors">
-        <div className="absolute inset-0 bg-blue-50/50 dark:bg-slate-800/30 flex flex-col items-center justify-center p-8 text-center">
-          <Earth className="w-20 h-20 text-blue-200 dark:text-blue-900/50 mb-6" />
-          <h3 className="text-2xl font-extrabold text-gray-400 dark:text-gray-600 tracking-tighter">Spatial Canvas</h3>
-          <p className="text-gray-400 dark:text-gray-600 text-sm mt-2 max-w-sm font-semibold">MapLibre GL context will initialize here upon query execution.</p>
+      <motion.div variants={viewItemVariants} className="w-full lg:w-2/3 bg-slate-950 rounded-[2.5rem] shadow-2xl overflow-hidden relative min-h-[500px] border border-white/10 flex flex-col justify-between p-6">
+        {/* Background Satellite Texture */}
+        <div className="absolute inset-0 bg-[url('https://upload.wikimedia.org/wikipedia/commons/6/6b/Earth_Eastern_Hemisphere.jpg')] bg-cover bg-center opacity-40 mix-blend-luminosity" />
+        
+        {/* HUD Header */}
+        <div className="relative z-10 flex justify-between items-center bg-slate-900/80 backdrop-blur-xl px-6 py-4 rounded-2xl border border-white/10 shadow-lg">
+          <div className="flex items-center gap-3">
+            <div className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest">LIVE SATELLITE FEED • SENTINEL-2B</span>
+          </div>
+          <div className="flex items-center gap-4 text-xs font-mono text-gray-400 font-medium">
+            <span>LAT: 33.7490° N</span>
+            <span>LON: 118.2700° W</span>
+            <span className="px-2 py-1 bg-blue-600/30 text-blue-300 rounded border border-blue-400/30">EPSG:4326</span>
+          </div>
+        </div>
+
+        {/* AI Grounding Bounding Box Demo Overlay */}
+        <div className="relative z-10 my-auto flex justify-center items-center">
+          <div className="relative border-2 border-dashed border-blue-400 bg-blue-500/10 p-8 rounded-2xl backdrop-blur-sm shadow-[0_0_30px_rgba(59,130,246,0.3)] max-w-md w-full animate-pulse">
+            <div className="absolute -top-3 left-4 bg-blue-600 text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded shadow">
+              OBJECT DETECTED [CONFIDENCE: 98.4%]
+            </div>
+            <p className="text-white font-mono text-xs font-bold mb-1">Target: Commercial Vessel</p>
+            <p className="text-blue-200 font-mono text-[10px]">Bounding Box: [33.748, -118.271, 33.752, -118.265]</p>
+          </div>
+        </div>
+
+        {/* HUD Controls Footer */}
+        <div className="relative z-10 flex justify-between items-center bg-slate-900/80 backdrop-blur-xl px-6 py-4 rounded-2xl border border-white/10 shadow-lg">
+          <div className="flex gap-2">
+            <button className="px-4 py-2 bg-blue-600 text-white text-xs font-bold rounded-xl shadow hover:bg-blue-500 transition-colors">Optical</button>
+            <button className="px-4 py-2 bg-slate-800 text-gray-300 text-xs font-bold rounded-xl border border-white/10 hover:bg-slate-700 transition-colors">SAR Synthetic</button>
+            <button className="px-4 py-2 bg-slate-800 text-gray-300 text-xs font-bold rounded-xl border border-white/10 hover:bg-slate-700 transition-colors">Infrared</button>
+          </div>
+          <div className="text-xs font-mono font-bold text-gray-400">
+            ZOOM: 16.5x • RESOLUTION: 0.5m/px
+          </div>
         </div>
       </motion.div>
     </motion.div>
