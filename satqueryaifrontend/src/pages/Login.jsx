@@ -53,6 +53,27 @@ export default function Login() {
             >
               Sign In <ArrowRight className="w-4 h-4" />
             </motion.button>
+
+            <div className="pt-2">
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-border" />
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-2 bg-mesh text-neutral">Or</span>
+                </div>
+              </div>
+            </div>
+
+            <motion.button 
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
+              type="button"
+              onClick={() => navigate('/dashboard')}
+              className="w-full bg-white text-primary border border-border py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors shadow-sm flex items-center justify-center gap-2"
+            >
+              Quick Demo Login
+            </motion.button>
           </form>
 
           <p className="mt-8 text-center text-sm text-neutral">
