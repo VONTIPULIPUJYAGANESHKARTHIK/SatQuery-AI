@@ -42,6 +42,9 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const { isDarkMode, toggleTheme } = useTheme();
 
+  // Notification State
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+
   // Profile Edit State
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [profileData, setProfileData] = useState({ 
@@ -1004,10 +1007,50 @@ export default function Dashboard() {
               {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
             
-            <button className="text-gray-400 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors relative p-2.5 rounded-full hover:bg-gray-100 dark:hover:bg-white/10">
-              <Bell className="w-5 h-5" />
-              <span className="absolute top-2 right-2.5 w-2.5 h-2.5 bg-blue-500 rounded-full border-2 border-white dark:border-slate-900" />
-            </button>
+            <div className="relative">
+              <button onClick={() => setIsNotificationsOpen(!isNotificationsOpen)} className="text-gray-400 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors relative p-2.5 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 focus:outline-none">
+                <Bell className="w-5 h-5" />
+                <span className="absolute top-2 right-2.5 w-2.5 h-2.5 bg-blue-500 rounded-full border-2 border-white dark:border-slate-900" />
+              </button>
+
+              <AnimatePresence>
+                {isNotificationsOpen && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    className="absolute right-0 mt-4 w-80 bg-white/95 dark:bg-slate-800/95 backdrop-blur-3xl border border-white/60 dark:border-white/10 rounded-3xl shadow-2xl overflow-hidden z-50 flex flex-col"
+                  >
+                    <div className="p-4 border-b border-gray-100 dark:border-white/5 flex justify-between items-center">
+                      <h3 className="text-sm font-extrabold text-gray-900 dark:text-white tracking-tight">Notifications</h3>
+                      <button className="text-[10px] font-bold text-blue-600 dark:text-blue-400 hover:underline">Mark all read</button>
+                    </div>
+                    <div className="max-h-80 overflow-y-auto p-2 space-y-1">
+                      {[
+                        { title: 'Inference Complete', desc: 'VQA Analysis on Sentinel-2 tile finished.', time: '2m ago', unread: true },
+                        { title: 'Dataset Indexed', desc: 'SAR Port of Long Beach is ready.', time: '1h ago', unread: true },
+                        { title: 'System Update', desc: 'SatQuery Models v4.2 deployed.', time: 'Yesterday', unread: false }
+                      ].map((n, i) => (
+                        <div key={i} className="p-3 rounded-2xl hover:bg-gray-50 dark:hover:bg-white/5 transition-colors cursor-pointer flex gap-3 relative">
+                          {n.unread && <div className="w-2 h-2 rounded-full bg-blue-500 absolute left-1 top-5" />}
+                          <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${n.unread ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' : 'bg-gray-100 dark:bg-slate-700 text-gray-500'}`}>
+                            <Bell className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <p className="text-xs font-bold text-gray-900 dark:text-white">{n.title}</p>
+                            <p className="text-[11px] font-semibold text-gray-500 dark:text-gray-400 mt-0.5">{n.desc}</p>
+                            <p className="text-[9px] font-bold text-gray-400 mt-1 uppercase">{n.time}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <button className="p-3 border-t border-gray-100 dark:border-white/5 text-xs font-bold text-center text-gray-500 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                      View All
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
             
             <div className="relative ml-2">
               <button onClick={() => setIsProfileOpen(!isProfileOpen)} className="flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none">
