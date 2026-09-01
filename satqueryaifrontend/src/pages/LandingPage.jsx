@@ -46,14 +46,10 @@ export default function LandingPage() {
           transition={{ duration: 0.7 }}
           className="flex-1 space-y-8 relative z-10"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-secondary text-sm font-bold tracking-wide mb-2">
-            <Zap className="w-4 h-4" /> VLM Model 4.0 Architecture
-          </div>
-          
           <h1 className="text-6xl md:text-7xl font-extrabold text-primary leading-[1.1] tracking-tight">
-            Query the planet <br /> 
+            Planetary scale <br /> 
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-blue-400">
-              in plain English.
+              intelligence.
             </span>
           </h1>
           <p className="text-xl text-neutral max-w-xl leading-relaxed font-medium">
@@ -71,92 +67,26 @@ export default function LandingPage() {
           </div>
         </motion.div>
 
-        {/* Right Column: Animated Product Mockup */}
+        {/* Right Column: Globe Graphic */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
           className="flex-1 w-full relative"
         >
-          {/* Ambient Glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-400/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" />
+          {/* Floating UI Elements */}
+          <div className="absolute -top-12 -left-12 w-64 h-64 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob" />
+          <div className="absolute -bottom-12 -right-12 w-64 h-64 bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000" />
           
-          {/* Glassmorphic Browser/App Window */}
-          <div className="relative rounded-2xl border border-white/60 shadow-2xl bg-white/40 backdrop-blur-xl overflow-hidden aspect-[4/3] flex flex-col transform rotate-1 hover:rotate-0 transition-transform duration-500">
-            {/* Window Header */}
-            <div className="h-10 bg-white/60 border-b border-white/40 flex items-center px-4 gap-2 shrink-0">
-              <div className="w-3 h-3 rounded-full bg-red-400" />
-              <div className="w-3 h-3 rounded-full bg-amber-400" />
-              <div className="w-3 h-3 rounded-full bg-green-400" />
-              <div className="ml-4 flex-1 h-5 bg-white/50 rounded-md max-w-sm" />
-            </div>
-            
-            {/* Window Content (Mock UI) */}
-            <div className="flex-1 flex p-4 gap-4">
-              {/* Sidebar Mock */}
-              <div className="w-1/3 space-y-3">
-                <div className="h-24 bg-white/80 rounded-xl shadow-sm border border-white p-3 flex flex-col justify-between">
-                  <div className="w-full h-3 bg-gray-100 rounded" />
-                  <div className="w-3/4 h-3 bg-gray-100 rounded" />
-                  <div className="w-1/2 h-8 bg-blue-50 text-secondary text-[10px] font-bold flex items-center justify-center rounded-lg border border-blue-100">
-                    <Search className="w-3 h-3 mr-1" /> Searching...
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="h-10 bg-white/60 rounded-lg shadow-sm border border-white/50" />
-                  <div className="h-10 bg-white/60 rounded-lg shadow-sm border border-white/50" />
-                </div>
-              </div>
-              
-              {/* Map/Main Content Mock */}
-              <div className="flex-1 bg-slate-100 rounded-xl shadow-inner border border-white/50 relative overflow-hidden">
-                {/* Simulated Map Background */}
-                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(#94a3b8 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
-                
-                {/* Animated Targeting Box */}
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: [0, 1, 1, 0], scale: [0.8, 1.1, 1, 0.8] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute top-1/3 left-1/4 w-24 h-24 border-2 border-secondary rounded-lg bg-secondary/10 flex items-center justify-center"
-                >
-                  <div className="absolute -top-6 left-0 bg-secondary text-white text-[9px] px-2 py-0.5 rounded font-bold uppercase tracking-wider">
-                    Vessel Detected
-                  </div>
-                  <div className="w-2 h-2 rounded-full bg-secondary animate-ping" />
-                </motion.div>
-                
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: [0, 1, 1, 0], scale: [0.8, 1, 1.1, 0.8] }}
-                  transition={{ duration: 4, delay: 2, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute bottom-1/4 right-1/3 w-16 h-16 border-2 border-green-500 rounded-lg bg-green-500/10 flex items-center justify-center"
-                >
-                  <div className="absolute -top-6 left-0 bg-green-500 text-white text-[9px] px-2 py-0.5 rounded font-bold uppercase tracking-wider">
-                    Safe Zone
-                  </div>
-                </motion.div>
-              </div>
-            </div>
+          <div className="aspect-[4/3] rounded-2xl border border-white/60 shadow-2xl bg-white overflow-hidden relative group">
+            <img 
+              src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" 
+              alt="Satellite Earth" 
+              className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary/80 via-transparent to-transparent opacity-80" />
           </div>
         </motion.div>
-      </section>
-
-      {/* Social Proof (Trust Bar) */}
-      <section className="border-y border-border bg-white/50 py-10 overflow-hidden relative">
-        <div className="max-w-7xl mx-auto px-8">
-          <p className="text-center text-sm font-bold text-neutral uppercase tracking-widest mb-8">
-            Trusted by the world's most data-driven organizations
-          </p>
-          <div className="flex justify-center items-center gap-12 md:gap-24 opacity-40 grayscale">
-            {/* Simulated Logos - Text for demo, normally SVG paths */}
-            <div className="text-2xl font-black font-serif">AEROSTAR</div>
-            <div className="text-2xl font-bold tracking-tighter">NEXUS</div>
-            <div className="text-2xl font-extrabold italic">GlobalMetrics</div>
-            <div className="text-2xl font-black uppercase tracking-widest">Sentient</div>
-            <div className="text-2xl font-bold">Lumina</div>
-          </div>
-        </div>
       </section>
 
       {/* How it Works (Pipeline) */}
