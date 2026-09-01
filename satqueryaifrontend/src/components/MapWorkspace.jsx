@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Map, { NavigationControl, Layer, Source } from 'react-map-gl/maplibre';
+import Map, { Layer, Source } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import { Layers, ZoomIn, ZoomOut, SlidersHorizontal, Info } from 'lucide-react';
+import { Layers, ZoomIn, ZoomOut, SlidersHorizontal, Info, Crosshair } from 'lucide-react';
 
 // Mock GeoJSON for segmentation mask overlay
 const mockMaskGeoJSON = {
@@ -35,7 +35,7 @@ export default function MapWorkspace() {
   });
 
   return (
-    <main className="flex-1 relative h-full bg-black">
+    <div className="absolute inset-0 w-full h-full z-0 bg-primary">
       {/* MapLibre Container */}
       <Map
         {...viewState}
@@ -48,54 +48,74 @@ export default function MapWorkspace() {
             id="mask-fill" 
             type="fill" 
             paint={{
-              'fill-color': '#FF007F',
-              'fill-opacity': 0.3,
+              'fill-color': '#14B8A6', // hud-teal
+              'fill-opacity': 0.15,
             }} 
           />
           <Layer 
             id="mask-line" 
             type="line" 
             paint={{
-              'line-color': '#FF007F',
+              'line-color': '#14B8A6',
               'line-width': 2,
             }} 
           />
         </Source>
         
+        {/* Central HUD Crosshair */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-50 flex items-center justify-center">
+          <Crosshair className="w-12 h-12 text-hud-amber stroke-[1px]" />
+          <div className="absolute w-64 h-[1px] bg-hud-amber/20" />
+          <div className="absolute h-64 w-[1px] bg-hud-amber/20" />
+        </div>
+
         {/* Custom Controls (Top Right) */}
-        <div className="absolute top-4 right-4 flex flex-col gap-2">
-          <div className="bg-panel/90 backdrop-blur border border-slate-700 rounded-lg p-1 shadow-lg flex flex-col">
-            <button className="p-2 text-slate-300 hover:text-text-main hover:bg-slate-700/50 rounded transition-colors" title="Zoom In">
+        <div className="absolute top-20 right-6 flex flex-col gap-4 z-40">
+          <div className="bg-panel/60 backdrop-blur-xl border border-white/10 rounded-sm p-1 shadow-2xl flex flex-col">
+            <button className="p-2.5 text-slate-400 hover:text-hud-teal hover:bg-white/5 transition-colors" title="Zoom In">
               <ZoomIn className="w-4 h-4" />
             </button>
-            <div className="w-full h-px bg-slate-700 my-0.5" />
-            <button className="p-2 text-slate-300 hover:text-text-main hover:bg-slate-700/50 rounded transition-colors" title="Zoom Out">
+            <div className="w-full h-px bg-white/5 my-0.5" />
+            <button className="p-2.5 text-slate-400 hover:text-hud-teal hover:bg-white/5 transition-colors" title="Zoom Out">
               <ZoomOut className="w-4 h-4" />
             </button>
           </div>
           
-          <div className="bg-panel/90 backdrop-blur border border-slate-700 rounded-lg p-1 shadow-lg flex flex-col mt-2">
-            <button className="p-2 text-accent hover:bg-accent/10 rounded transition-colors" title="Layers">
+          <div className="bg-panel/60 backdrop-blur-xl border border-white/10 rounded-sm p-1 shadow-2xl flex flex-col">
+            <button className="p-2.5 text-hud-teal bg-hud-teal/10 rounded-sm transition-colors" title="Layers">
               <Layers className="w-4 h-4" />
             </button>
-            <button className="p-2 text-slate-300 hover:text-text-main hover:bg-slate-700/50 rounded transition-colors" title="Opacity">
+            <div className="w-full h-px bg-white/5 my-0.5" />
+            <button className="p-2.5 text-slate-400 hover:text-hud-teal hover:bg-white/5 rounded-sm transition-colors" title="Opacity">
               <SlidersHorizontal className="w-4 h-4" />
             </button>
           </div>
         </div>
 
         {/* Legend (Bottom Right) */}
-        <div className="absolute bottom-6 right-6 bg-panel/80 backdrop-blur-md border border-slate-700 rounded-lg p-3 shadow-2xl max-w-xs">
-          <div className="flex items-center gap-2 mb-2">
-            <Info className="w-4 h-4 text-accent" />
-            <span className="text-xs font-medium text-slate-200">Map Legend</span>
+        <div className="absolute bottom-8 right-6 bg-panel/70 backdrop-blur-xl border border-white/10 rounded-sm p-4 shadow-2xl w-64 z-40">
+          <div className="flex items-center justify-between mb-4 border-b border-white/10 pb-2">
+            <div className="flex items-center gap-2">
+              <Info className="w-4 h-4 text-hud-teal" />
+              <span className="text-xs font-mono uppercase tracking-widest text-slate-300">Target Legend</span>
+            </div>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded-sm border border-map-overlay bg-map-overlay/30" />
-            <span className="text-xs text-slate-400">Highlighted Targets: Water Bodies / Cargo</span>
+          <div className="flex flex-col gap-3 font-mono text-[10px] uppercase">
+            <div className="flex items-center gap-3">
+              <div className="w-3 h-3 rounded-sm border border-hud-teal bg-hud-teal/20" />
+              <span className="text-slate-400">Primary Targets (Vessels)</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-3 h-3 rounded-sm border border-hud-crimson bg-hud-crimson/20" />
+              <span className="text-slate-400">Anomalous Activity</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-3 h-3 rounded-sm border border-hud-amber bg-hud-amber/20" />
+              <span className="text-slate-400">Search Region bounds</span>
+            </div>
           </div>
         </div>
       </Map>
-    </main>
+    </div>
   );
 }

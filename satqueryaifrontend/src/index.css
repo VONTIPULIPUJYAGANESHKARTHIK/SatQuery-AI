@@ -4,21 +4,27 @@
 
 @layer base {
   body {
-    @apply bg-primary text-text-main antialiased m-0 p-0 overflow-hidden;
+    @apply bg-primary text-text-main antialiased m-0 p-0 overflow-hidden font-sans;
   }
 }
 
-/* Custom scrollbar for chat interface */
+/* Custom HUD scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: rgba(20, 184, 166, 0.5); /* hud-teal with opacity */
+}
+
+/* MapLibre overrides for HUD look */
+.maplibregl-ctrl-bottom-right,
+.maplibregl-ctrl-bottom-left {
+  display: none !important;
 }

@@ -1,41 +1,38 @@
 import React, { useState } from 'react';
-import { Terminal, ChevronDown, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { Activity, Code, Server, Check } from 'lucide-react';
 
 const steps = [
-  "Header Validated",
-  "GeoTIFF Processed (Bands 1-8)",
-  "ChangeFormer Architecture Loaded",
-  "Attention Masks Generated",
-  "SHA-256 Logged to Audit Trail"
+  { text: "Validating GeoTIFF headers", icon: Server },
+  { text: "Initializing Vision-Language Model", icon: Code },
+  { text: "Executing Zero-Shot Segmentation", icon: Activity },
+  { text: "Extracting polygon coordinates", icon: Code }
 ];
 
 export default function AuditTrace() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div className="bg-primary/80 border border-slate-700/50 rounded-md overflow-hidden text-xs">
+    <div className="mt-2 border-l border-white/10 pl-3 py-1">
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between px-3 py-1.5 bg-panel/50 hover:bg-panel transition-colors text-slate-300"
+        className="flex items-center gap-2 text-[10px] uppercase font-mono tracking-widest text-slate-500 hover:text-hud-teal transition-colors"
       >
-        <div className="flex items-center gap-1.5">
-          <Terminal className="w-3.5 h-3.5 text-accent" />
-          <span className="font-mono">Agentic Orchestration Trace</span>
-        </div>
-        {isOpen ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5" />}
+        <span>{isOpen ? '[-]' : '[+]'}</span>
+        <span>Execution Trace</span>
       </button>
       
       {isOpen && (
-        <div className="p-3 font-mono text-slate-400 space-y-1.5 bg-black/20">
+        <div className="mt-3 space-y-2.5">
           {steps.map((step, idx) => (
-            <div key={idx} className="flex items-start gap-2">
-              <CheckCircle2 className="w-3.5 h-3.5 text-accent mt-0.5 shrink-0" />
-              <span>{step}</span>
+            <div key={idx} className="flex items-start gap-3 text-[10px] font-mono text-slate-400">
+              <step.icon className="w-3.5 h-3.5 text-hud-teal/50 shrink-0" />
+              <span className="uppercase">{step.text}</span>
+              <Check className="w-3.5 h-3.5 text-hud-teal ml-auto" />
             </div>
           ))}
-          <div className="flex items-start gap-2 text-slate-500 mt-2 pt-2 border-t border-slate-800/50">
-            <span className="text-accent/50">{'>'}</span>
-            <span>Trace completed. End of execution.</span>
+          <div className="pt-2 mt-2 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-slate-500">
+            <span>HASH: 0x9F4A...B2C</span>
+            <span className="text-hud-teal">SECURE</span>
           </div>
         </div>
       )}

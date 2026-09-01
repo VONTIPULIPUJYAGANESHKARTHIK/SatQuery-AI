@@ -7,14 +7,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#0B0F19",
-        panel: "#1E293B",
+        primary: "#000000",
+        panel: "#0A0A0B",
         "text-main": "#F8FAFC",
-        accent: "#06B6D4",
-        "map-overlay": "#FF007F",
+        "hud-teal": "#14B8A6",
+        "hud-amber": "#F59E0B",
+        "hud-crimson": "#E11D48",
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
       },
     },
   },

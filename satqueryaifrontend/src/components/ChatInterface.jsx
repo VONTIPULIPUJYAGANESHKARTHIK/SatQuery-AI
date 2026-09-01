@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Send, Terminal } from 'lucide-react';
+import { Terminal, Send, ChevronRight } from 'lucide-react';
 import AuditTrace from './AuditTrace';
 
 const initialMessages = [
-  { role: 'system', content: 'Agentic Backend initialized. Ready for multimodal analysis.' },
-  { role: 'user', content: 'Detect cargo ships near the harbor layout in the latest image.' },
-  { role: 'ai', content: 'Analyzing... Found 14 potential cargo ships in the designated harbor area. Applying segmentation masks.', isAnalyzing: false },
+  { role: 'system', content: 'SYSTEM READY. NEURAL ORCHESTRATOR ONLINE.' },
+  { role: 'user', content: 'Detect cargo ships near the harbor layout in the latest imagery.' },
+  { role: 'ai', content: 'ANALYSIS COMPLETE. 14 ANOMALIES DETECTED. VECTOR MASKS APPLIED.', isAnalyzing: false },
 ];
 
 export default function ChatInterface() {
@@ -31,11 +31,10 @@ export default function ChatInterface() {
     setInputValue('');
     setIsAnalyzing(true);
 
-    // Mock analysis delay
     setTimeout(() => {
       setMessages((prev) => [
         ...prev,
-        { role: 'ai', content: 'Processing query with ChangeFormer architecture...', isAnalyzing: true }
+        { role: 'ai', content: 'PROCESSING VECTOR DATA...', isAnalyzing: true }
       ]);
       
       setTimeout(() => {
@@ -43,45 +42,44 @@ export default function ChatInterface() {
           const newMessages = [...prev];
           newMessages[newMessages.length - 1] = {
             role: 'ai',
-            content: 'Analysis complete. Displaying bounding boxes and segmentation masks for the identified regions.',
+            content: 'TASK COMPLETED. 3 TARGETS IDENTIFIED. RETAINING MASKS IN MEMORY.',
             isAnalyzing: false,
             hasAudit: true
           };
           return newMessages;
         });
         setIsAnalyzing(false);
-      }, 2000);
+      }, 2500);
     }, 500);
   };
 
   return (
-    <div className="flex flex-col h-full overflow-hidden border border-slate-800 rounded-lg bg-slate-900/40 backdrop-blur-sm">
-      {/* Messages Area */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+    <div className="flex flex-col h-full bg-black/40 border border-white/10 relative">
+      {/* Corner Accents */}
+      <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/20" />
+      <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-white/20" />
+
+      {/* Terminal Output */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-5 font-mono text-xs">
         {messages.map((msg, idx) => (
-          <div key={idx} className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
+          <div key={idx} className="flex flex-col">
             {msg.role === 'system' ? (
-              <div className="w-full text-center mb-2">
-                <span className="text-xs text-accent bg-accent/10 px-3 py-1 rounded-full border border-accent/20">
-                  {msg.content}
-                </span>
+              <div className="flex items-center gap-2 text-hud-teal/60">
+                <span>[SYS]</span>
+                <span>{msg.content}</span>
+              </div>
+            ) : msg.role === 'user' ? (
+              <div className="flex items-start gap-2 text-slate-300">
+                <ChevronRight className="w-4 h-4 text-slate-500 shrink-0" />
+                <span className="uppercase">{msg.content}</span>
               </div>
             ) : (
-              <div className="max-w-[85%]">
-                <div
-                  className={`px-4 py-2.5 rounded-lg text-sm ${
-                    msg.role === 'user'
-                      ? 'bg-panel border border-slate-700 text-text-main rounded-br-none'
-                      : 'bg-primary border border-accent/30 text-slate-200 rounded-bl-none'
-                  } ${msg.isAnalyzing ? 'animate-pulse border-accent shadow-[0_0_10px_rgba(6,182,212,0.2)]' : ''}`}
-                >
-                  {msg.content}
+              <div className="pl-6 flex flex-col gap-2">
+                <div className={`flex items-start gap-2 ${msg.isAnalyzing ? 'text-hud-amber animate-pulse' : 'text-hud-teal'}`}>
+                  <span>{'>'}</span>
+                  <span className="uppercase tracking-wide">{msg.content}</span>
                 </div>
-                {msg.hasAudit && (
-                  <div className="mt-2">
-                    <AuditTrace />
-                  </div>
-                )}
+                {msg.hasAudit && <AuditTrace />}
               </div>
             )}
           </div>
@@ -90,22 +88,22 @@ export default function ChatInterface() {
       </div>
 
       {/* Input Area */}
-      <form onSubmit={handleSubmit} className="p-3 bg-panel/80 border-t border-slate-800 flex gap-2">
-        <input
-          type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          placeholder="e.g., Detect cargo ships near the harbor layout..."
-          className="flex-1 bg-primary border border-slate-700 rounded-md px-3 py-2 text-sm text-text-main placeholder-slate-500 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all"
-        />
+      <form onSubmit={handleSubmit} className="p-3 border-t border-white/10 bg-black/60 flex items-center gap-3">
+        <div className="flex-1 flex items-center gap-2 bg-transparent border border-white/20 px-3 py-2 focus-within:border-hud-teal focus-within:bg-hud-teal/5 transition-all">
+          <Terminal className="w-4 h-4 text-hud-teal" />
+          <input
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            placeholder="AWAITING COMMAND..."
+            className="w-full bg-transparent border-none outline-none font-mono text-xs text-text-main placeholder-slate-600 uppercase"
+          />
+        </div>
         <button
           type="submit"
           disabled={isAnalyzing}
-          className="bg-accent/20 text-accent border border-accent hover:bg-accent hover:text-primary p-2 rounded-md transition-all flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed group relative overflow-hidden"
+          className="bg-hud-teal/20 border border-hud-teal text-hud-teal p-2.5 hover:bg-hud-teal hover:text-black transition-all disabled:opacity-30 disabled:hover:bg-hud-teal/20 disabled:hover:text-hud-teal"
         >
-          {isAnalyzing && (
-            <div className="absolute inset-0 bg-white/20 animate-[pulse_1s_ease-in-out_infinite]" />
-          )}
           <Send className="w-4 h-4" />
         </button>
       </form>
