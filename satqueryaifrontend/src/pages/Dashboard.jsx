@@ -42,6 +42,14 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const { isDarkMode, toggleTheme } = useTheme();
 
+  // Profile Edit State
+  const [isEditingProfile, setIsEditingProfile] = useState(false);
+  const [profileData, setProfileData] = useState({ 
+    name: 'John Smith', 
+    role: 'Lead Geospatial Analyst', 
+    email: 'john.smith@satquery.ai' 
+  });
+
   // Feature 11: Multi-Modal Ingestion Tabs
   const [ingestionMode, setIngestionMode] = useState('Single'); // 'Single' | 'Bi-Temporal' | 'Fusion'
 
@@ -609,15 +617,70 @@ export default function Dashboard() {
     <motion.div key="profile" variants={viewContainerVariants} initial="hidden" animate="visible" exit="exit" className="max-w-3xl mx-auto pt-10">
       <motion.div variants={viewItemVariants} className="bg-white/70 dark:bg-slate-900/50 backdrop-blur-3xl border border-white/60 dark:border-white/10 rounded-[2rem] shadow-xl p-10 flex flex-col items-center text-center">
         <div className="w-28 h-28 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center text-4xl font-black mb-6 shadow-sm border border-blue-200 dark:border-blue-800/50">
-          JS
+          {profileData.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}
         </div>
-        <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-2">John Smith</h2>
-        <p className="text-gray-500 dark:text-gray-400 font-semibold mb-8">Lead Geospatial Analyst • john.smith@satquery.ai</p>
+        
+        {isEditingProfile ? (
+          <div className="w-full max-w-sm space-y-4 mb-8 text-left">
+            <div>
+              <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Full Name</label>
+              <input 
+                type="text" 
+                value={profileData.name}
+                onChange={(e) => setProfileData({...profileData, name: e.target.value})}
+                className="w-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm font-bold focus:ring-2 focus:ring-blue-500 outline-none"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Role</label>
+              <input 
+                type="text" 
+                value={profileData.role}
+                onChange={(e) => setProfileData({...profileData, role: e.target.value})}
+                className="w-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm font-bold focus:ring-2 focus:ring-blue-500 outline-none"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Email Address</label>
+              <input 
+                type="email" 
+                value={profileData.email}
+                onChange={(e) => setProfileData({...profileData, email: e.target.value})}
+                className="w-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm font-bold focus:ring-2 focus:ring-blue-500 outline-none"
+              />
+            </div>
+          </div>
+        ) : (
+          <>
+            <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-2">{profileData.name}</h2>
+            <p className="text-gray-500 dark:text-gray-400 font-semibold mb-8">{profileData.role} • {profileData.email}</p>
+          </>
+        )}
         
         <div className="w-full max-w-md space-y-3">
-          <button className="w-full bg-blue-600 text-white px-6 py-3.5 rounded-xl font-bold shadow hover:bg-blue-500 transition-colors">
-            Edit Profile
-          </button>
+          {isEditingProfile ? (
+            <div className="flex gap-3">
+              <button 
+                onClick={() => setIsEditingProfile(false)}
+                className="flex-1 bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 px-6 py-3.5 rounded-xl font-bold shadow hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={() => setIsEditingProfile(false)}
+                className="flex-1 bg-emerald-600 text-white px-6 py-3.5 rounded-xl font-bold shadow hover:bg-emerald-500 transition-colors"
+              >
+                Save Changes
+              </button>
+            </div>
+          ) : (
+            <button 
+              onClick={() => setIsEditingProfile(true)}
+              className="w-full bg-blue-600 text-white px-6 py-3.5 rounded-xl font-bold shadow hover:bg-blue-500 transition-colors"
+            >
+              Edit Profile
+            </button>
+          )}
           <button 
             onClick={handleLogout}
             className="w-full bg-white dark:bg-slate-800 text-red-600 dark:text-red-400 border border-gray-200 dark:border-white/10 px-6 py-3.5 rounded-xl font-bold shadow-sm hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
@@ -949,11 +1012,11 @@ export default function Dashboard() {
             <div className="relative ml-2">
               <button onClick={() => setIsProfileOpen(!isProfileOpen)} className="flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none">
                 <div className="text-right hidden md:block">
-                  <div className="text-sm font-bold text-gray-900 dark:text-white tracking-tight">John Smith</div>
-                  <div className="text-xs font-semibold text-gray-500 dark:text-gray-400">Stratos Corp</div>
+                  <div className="text-sm font-bold text-gray-900 dark:text-white tracking-tight">{profileData.name}</div>
+                  <div className="text-xs font-semibold text-gray-500 dark:text-gray-400">{profileData.role.split(' ')[0]} Corp</div>
                 </div>
                 <div className="w-11 h-11 rounded-[1rem] bg-white dark:bg-slate-800 border border-gray-200 dark:border-white/10 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold text-sm shadow-sm">
-                  JS
+                  {profileData.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}
                 </div>
               </button>
 
