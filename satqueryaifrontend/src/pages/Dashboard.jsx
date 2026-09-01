@@ -421,20 +421,55 @@ export default function Dashboard() {
     </motion.div>
   );
 
-  const renderPlaceholder = (title, icon) => (
+  const renderSettings = () => (
     <motion.div 
-      key={title}
+      key="settings"
       initial={{ opacity: 0, scale: 0.98 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.98 }}
       transition={springTransition}
-      className="flex flex-col items-center justify-center h-full text-center p-12"
+      className="max-w-4xl mx-auto pt-6"
     >
-      <div className="w-24 h-24 bg-white/60 backdrop-blur-xl border border-white/60 rounded-3xl flex items-center justify-center mb-8 shadow-sm">
-        {React.createElement(icon, { className: "w-10 h-10 text-gray-400" })}
+      <div className="bg-white/70 backdrop-blur-2xl border border-white/60 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden p-8">
+        <div className="flex items-center gap-6 mb-8 border-b border-gray-200/50 pb-8">
+          <div className="w-24 h-24 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-3xl font-bold shadow-inner">
+            JS
+          </div>
+          <div>
+            <h2 className="text-3xl font-bold text-gray-800 tracking-tight">John Smith</h2>
+            <p className="text-gray-500 text-lg">john@company.com</p>
+          </div>
+        </div>
+
+        <div className="space-y-6">
+          <h3 className="text-lg font-bold text-gray-800 tracking-tight">Profile Settings</h3>
+          
+          <div className="grid grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-gray-600">Full Name</label>
+              <input type="text" defaultValue="John Smith" className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all" />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-gray-600">Email Address</label>
+              <input type="email" defaultValue="john@company.com" className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all" />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-gray-600">Organization</label>
+              <input type="text" defaultValue="Acme Corp" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-500" disabled />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-gray-600">Role</label>
+              <input type="text" defaultValue="Lead Analyst" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-500" disabled />
+            </div>
+          </div>
+
+          <div className="pt-6 flex justify-end">
+            <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="bg-blue-600 text-white px-8 py-3 rounded-xl text-sm font-semibold shadow-md">
+              Save Changes
+            </motion.button>
+          </div>
+        </div>
       </div>
-      <h2 className="text-3xl font-bold text-gray-800 mb-3 tracking-tight">{title}</h2>
-      <p className="text-gray-500 text-lg max-w-md">This module is currently disabled by your enterprise administrator.</p>
     </motion.div>
   );
 
@@ -445,7 +480,7 @@ export default function Dashboard() {
       case 'Datasets': return renderDatasets();
       case 'Spatial Query': return renderSpatialQuery();
       case 'Map View': return renderSpatialQuery(); 
-      case 'Settings': return renderPlaceholder('Settings', Settings);
+      case 'Settings': return renderSettings();
       default: return renderOverview();
     }
   };
@@ -548,14 +583,11 @@ export default function Dashboard() {
                     </div>
                     
                     <div className="py-2 px-3 space-y-1">
-                      <button className="w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-gray-700 hover:bg-gray-100/80 hover:text-gray-900 flex items-center gap-3 transition-colors">
+                      <button 
+                        onClick={() => { setActiveTab('Settings'); setIsProfileOpen(false); }}
+                        className="w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-gray-700 hover:bg-gray-100/80 hover:text-gray-900 flex items-center gap-3 transition-colors"
+                      >
                         <User className="w-4 h-4 text-gray-400" /> My Profile
-                      </button>
-                      <button className="w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-gray-700 hover:bg-gray-100/80 hover:text-gray-900 flex items-center gap-3 transition-colors">
-                        <CreditCard className="w-4 h-4 text-gray-400" /> Billing
-                      </button>
-                      <button className="w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-gray-700 hover:bg-gray-100/80 hover:text-gray-900 flex items-center gap-3 transition-colors">
-                        <Key className="w-4 h-4 text-gray-400" /> API Keys
                       </button>
                     </div>
                     
