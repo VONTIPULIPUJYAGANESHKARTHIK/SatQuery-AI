@@ -630,10 +630,174 @@ export default function Dashboard() {
     </motion.div>
   );
 
+  // Feature: Full-Screen Map Viewport for "Map View" tab
+  const renderMapView = () => (
+    <motion.div 
+      key="map-view"
+      variants={viewContainerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      className="h-[calc(100vh-8.5rem)] w-full max-w-[1920px] mx-auto overflow-hidden relative rounded-[2.5rem] shadow-2xl border border-white/10 select-none bg-slate-950"
+    >
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Base Layer */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center transition-opacity duration-300"
+          style={{ 
+            backgroundImage: `url('https://upload.wikimedia.org/wikipedia/commons/6/6b/Earth_Eastern_Hemisphere.jpg')`,
+            opacity: showOptical ? 1 : 0
+          }}
+        />
+
+        {/* T1 (Before) Swiped Image Layer (Clipped dynamically by swipePos) */}
+        {ingestionMode === 'Bi-Temporal' && (
+          <div 
+            className="absolute inset-0 bg-cover bg-center border-r-2 border-white shadow-2xl"
+            style={{ 
+              backgroundImage: `url('https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg')`,
+              width: `${swipePos}%`,
+              opacity: showOptical ? 1 : 0
+            }}
+          >
+            <div className="absolute top-4 left-4 bg-slate-900/80 text-white text-[10px] font-mono font-bold px-3 py-1 rounded-full border border-white/20">
+              T1: PRE-EVENT (2024-01-10)
+            </div>
+          </div>
+        )}
+
+        {/* Optical-SAR Fusion Radar Overlay Layer */}
+        {showSAR && (
+          <div 
+            className="absolute inset-0 bg-[url('https://upload.wikimedia.org/wikipedia/commons/b/ba/The_earth_at_night.jpg')] bg-cover bg-center mix-blend-color-dodge opacity-40 pointer-events-none" 
+          />
+        )}
+
+        {/* AI Grounding Bounding Box & Spatial Change Mask Overlay */}
+        {showMask && (
+          <div 
+            className="absolute inset-0 pointer-events-none flex items-center justify-center p-12"
+            style={{ opacity: maskOpacity }}
+          >
+            {selectedTask === 'Change' ? (
+              <div className="w-full h-full border-4 border-rose-500/80 bg-rose-500/20 rounded-3xl backdrop-blur-[2px] flex items-center justify-center relative shadow-[0_0_50px_rgba(244,63,94,0.4)]">
+                <div className="absolute top-4 left-4 bg-rose-600 text-white font-mono text-[11px] font-bold px-3 py-1 rounded-full">
+                  PIXEL CHANGE MASK DETECTED [+14.2% MODIFIED ZONES]
+                </div>
+              </div>
+            ) : (
+              <div className="w-72 h-48 border-2 border-dashed border-emerald-400 bg-emerald-500/10 rounded-2xl relative shadow-[0_0_30px_rgba(16,185,129,0.3)] animate-pulse flex flex-col justify-between p-3">
+                <div className="bg-emerald-600 text-white font-mono text-[10px] font-bold px-2 py-0.5 rounded w-max">
+                  GROUNDED: COMMERCIAL VESSEL (98.4%)
+                </div>
+                <div className="text-[9px] font-mono text-emerald-300 bg-slate-900/80 p-1.5 rounded border border-emerald-500/30">
+                  BBOX: [33.748° N, -118.271° W]
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Draggable Swipe Bar Handle */}
+        {ingestionMode === 'Bi-Temporal' && (
+          <input 
+            type="range" 
+            min="0" 
+            max="100" 
+            value={swipePos} 
+            onChange={(e) => setSwipePos(Number(e.target.value))}
+            className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30"
+          />
+        )}
+
+        {/* Visual Swipe Handle Divider */}
+        {ingestionMode === 'Bi-Temporal' && (
+          <div 
+            className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_15px_rgba(255,255,255,1)] pointer-events-none z-20 flex items-center justify-center"
+            style={{ left: `${swipePos}%` }}
+          >
+            <div className="w-8 h-8 rounded-full bg-white text-slate-900 flex items-center justify-center shadow-lg font-bold text-xs">
+              ↔
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Viewport Header Controls HUD */}
+      <div className="absolute top-6 left-6 right-6 z-10 flex justify-between items-center bg-slate-900/85 backdrop-blur-xl px-6 py-4 rounded-2xl border border-white/10 shadow-xl">
+        <div className="flex items-center gap-3">
+          <div className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest">
+            FULLSCREEN IMMERSIVE MAP
+          </span>
+        </div>
+
+        <div className="flex items-center gap-3">
+          {ingestionMode === 'Bi-Temporal' && (
+            <span className="text-[11px] font-mono text-blue-300 font-bold bg-blue-900/40 px-3 py-1 rounded-lg border border-blue-500/30">
+              SWIPE POS: {swipePos}%
+            </span>
+          )}
+          <span className="px-2.5 py-1 bg-slate-800 text-gray-300 text-xs font-mono rounded-lg border border-white/10">
+            EPSG:4326
+          </span>
+        </div>
+      </div>
+
+      {/* Layer Controls & Opacity Floating Bar */}
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10 flex items-center bg-slate-900/85 backdrop-blur-xl px-6 py-4 rounded-2xl border border-white/10 shadow-xl gap-6">
+        {/* Layer Visibility Toggles */}
+        <div className="flex items-center gap-2">
+          <button 
+            onClick={() => setShowOptical(!showOptical)}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-colors ${
+              showOptical ? 'bg-blue-600 text-white border-blue-400' : 'bg-slate-800 text-gray-400 border-white/10'
+            }`}
+          >
+            Optical
+          </button>
+          <button 
+            onClick={() => setShowSAR(!showSAR)}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-colors ${
+              showSAR ? 'bg-indigo-600 text-white border-indigo-400' : 'bg-slate-800 text-gray-400 border-white/10'
+            }`}
+          >
+            SAR Radar
+          </button>
+          <button 
+            onClick={() => setShowMask(!showMask)}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-colors ${
+              showMask ? 'bg-emerald-600 text-white border-emerald-400' : 'bg-slate-800 text-gray-400 border-white/10'
+            }`}
+          >
+            AI Mask
+          </button>
+        </div>
+
+        <div className="w-px h-6 bg-white/20" />
+
+        {/* Mask Opacity Slider */}
+        <div className="flex items-center gap-3 text-xs font-mono text-gray-300">
+          <span>MASK OPACITY</span>
+          <input 
+            type="range" 
+            min="0" 
+            max="1" 
+            step="0.05"
+            value={maskOpacity}
+            onChange={(e) => setMaskOpacity(Number(e.target.value))}
+            className="w-24 accent-blue-500"
+          />
+          <span className="w-8 text-right">{Math.round(maskOpacity * 100)}%</span>
+        </div>
+      </div>
+    </motion.div>
+  );
+
   const renderContent = () => {
     switch (activeTab) {
       case 'Spatial Query': return renderSpatialWorkspace();
-      case 'Map View': return renderSpatialWorkspace();
+      case 'Map View': return renderMapView();
       case 'Overview': return renderOverview();
       case 'Data Ingestion': return renderDataIngestion();
       case 'Datasets': return renderDatasets();
