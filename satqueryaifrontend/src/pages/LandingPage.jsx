@@ -61,17 +61,10 @@ export default function LandingPage() {
             <motion.button 
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => navigate('/register')}
+              onClick={() => navigate('/login')}
               className="bg-primary text-white px-8 py-4 rounded-xl text-base font-semibold hover:bg-primary/90 transition-colors shadow-xl shadow-primary/20 flex items-center gap-2"
             >
-              Start Free Trial <ArrowRight className="w-5 h-5" />
-            </motion.button>
-            <motion.button 
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="bg-white text-primary border border-border px-8 py-4 rounded-xl text-base font-semibold hover:bg-gray-50 transition-colors shadow-sm"
-            >
-              Contact Sales
+              Sign In to Platform <ArrowRight className="w-5 h-5" />
             </motion.button>
           </div>
           
@@ -150,6 +143,58 @@ export default function LandingPage() {
                 <h3 className="text-xl font-bold text-primary mb-3">{feature.title}</h3>
                 <p className="text-neutral leading-relaxed">{feature.desc}</p>
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Solutions Section */}
+      <section id="solutions" className="bg-background py-32 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-8 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            <div className="flex-1">
+              <h2 className="text-4xl font-bold text-primary mb-6">Solutions for every industry.</h2>
+              <p className="text-lg text-neutral mb-8 leading-relaxed">
+                Whether you're monitoring global supply chains, assessing climate impact, or securing national borders, SatQuery AI adapts to your operational needs instantly.
+              </p>
+              <ul className="space-y-4">
+                {['Maritime & Port Monitoring', 'Agriculture & Crop Yields', 'Defense & Intelligence', 'Disaster Response'].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-primary font-semibold">
+                    <div className="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center shrink-0">
+                      <div className="w-2 h-2 rounded-full bg-secondary" />
+                    </div>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex-1 w-full">
+              <div className="aspect-video bg-surface border border-border rounded-2xl shadow-xl overflow-hidden relative">
+                <img 
+                  src="https://images.unsplash.com/photo-1498084991519-c4bef3d8cb73?q=80&w=2070&auto=format&fit=crop" 
+                  alt="Data mapping" 
+                  className="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Security Section */}
+      <section id="security" className="bg-primary text-white py-32 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-8 relative z-10 text-center">
+          <ShieldCheck className="w-16 h-16 text-secondary mx-auto mb-8" />
+          <h2 className="text-4xl font-bold mb-6">Military-grade security.</h2>
+          <p className="text-lg text-white/70 max-w-2xl mx-auto mb-12">
+            Your data is your most valuable asset. We employ end-to-end encryption, strict access controls, and regular third-party audits to ensure total compliance.
+          </p>
+          <div className="grid md:grid-cols-4 gap-6 text-left">
+            {['SOC 2 Type II', 'ISO 27001', 'GDPR Compliant', 'End-to-End Encryption'].map((cert, i) => (
+              <div key={i} className="bg-white/10 backdrop-blur-sm border border-white/20 p-6 rounded-xl">
+                <ShieldCheck className="w-6 h-6 text-secondary mb-4" />
+                <h4 className="font-bold text-white">{cert}</h4>
+              </div>
             ))}
           </div>
         </div>
