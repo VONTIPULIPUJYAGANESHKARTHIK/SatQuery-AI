@@ -421,9 +421,9 @@ export default function Dashboard() {
     </motion.div>
   );
 
-  const renderSettings = () => (
+  const renderProfile = () => (
     <motion.div 
-      key="settings"
+      key="profile"
       initial={{ opacity: 0, scale: 0.98 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.98 }}
@@ -442,7 +442,7 @@ export default function Dashboard() {
         </div>
 
         <div className="space-y-6">
-          <h3 className="text-lg font-bold text-gray-800 tracking-tight">Profile Settings</h3>
+          <h3 className="text-lg font-bold text-gray-800 tracking-tight">Profile Details</h3>
           
           <div className="grid grid-cols-2 gap-6">
             <div className="space-y-2">
@@ -465,9 +465,74 @@ export default function Dashboard() {
 
           <div className="pt-6 flex justify-end">
             <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="bg-blue-600 text-white px-8 py-3 rounded-xl text-sm font-semibold shadow-md">
-              Save Changes
+              Save Profile
             </motion.button>
           </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+
+  const renderSettings = () => (
+    <motion.div 
+      key="settings"
+      initial={{ opacity: 0, scale: 0.98 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.98 }}
+      transition={springTransition}
+      className="max-w-4xl mx-auto pt-6"
+    >
+      <div className="bg-white/70 backdrop-blur-2xl border border-white/60 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden p-8">
+        <h2 className="text-2xl font-bold text-gray-800 tracking-tight mb-8 pb-4 border-b border-gray-200/50">Application Settings</h2>
+        
+        <div className="space-y-8">
+          
+          <div className="space-y-4">
+            <h3 className="text-lg font-bold text-gray-800 flex items-center gap-2">
+              <Globe className="w-5 h-5 text-blue-500" /> Default Map Preferences
+            </h3>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-white border border-gray-200 p-4 rounded-xl">
+                <p className="text-sm font-semibold text-gray-700 mb-2">Base Map Style</p>
+                <select className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-blue-500">
+                  <option>Positron (Light)</option>
+                  <option>Dark Matter</option>
+                  <option>Satellite High-Res</option>
+                </select>
+              </div>
+              <div className="bg-white border border-gray-200 p-4 rounded-xl">
+                <p className="text-sm font-semibold text-gray-700 mb-2">Coordinate System</p>
+                <select className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-blue-500">
+                  <option>WGS 84 (EPSG:4326)</option>
+                  <option>Web Mercator (EPSG:3857)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <h3 className="text-lg font-bold text-gray-800 flex items-center gap-2">
+              <Bell className="w-5 h-5 text-blue-500" /> Notifications
+            </h3>
+            <div className="bg-white border border-gray-200 rounded-xl p-2">
+              {[
+                { title: 'Analysis Completion', desc: 'Notify when a spatial query finishes processing.' },
+                { title: 'Data Sync Alerts', desc: 'Alert when a linked database finishes syncing.' },
+                { title: 'System Updates', desc: 'Receive notifications about platform upgrades.' }
+              ].map((notif, i) => (
+                <div key={i} className="flex items-center justify-between p-4 border-b border-gray-100 last:border-0">
+                  <div>
+                    <p className="text-sm font-bold text-gray-800">{notif.title}</p>
+                    <p className="text-xs text-gray-500">{notif.desc}</p>
+                  </div>
+                  <div className="w-10 h-6 bg-blue-500 rounded-full relative cursor-pointer shadow-inner">
+                    <div className="w-4 h-4 bg-white rounded-full absolute right-1 top-1 shadow-sm" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
       </div>
     </motion.div>
@@ -481,6 +546,7 @@ export default function Dashboard() {
       case 'Spatial Query': return renderSpatialQuery();
       case 'Map View': return renderSpatialQuery(); 
       case 'Settings': return renderSettings();
+      case 'My Profile': return renderProfile();
       default: return renderOverview();
     }
   };
@@ -584,7 +650,7 @@ export default function Dashboard() {
                     
                     <div className="py-2 px-3 space-y-1">
                       <button 
-                        onClick={() => { setActiveTab('Settings'); setIsProfileOpen(false); }}
+                        onClick={() => { setActiveTab('My Profile'); setIsProfileOpen(false); }}
                         className="w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-gray-700 hover:bg-gray-100/80 hover:text-gray-900 flex items-center gap-3 transition-colors"
                       >
                         <User className="w-4 h-4 text-gray-400" /> My Profile
