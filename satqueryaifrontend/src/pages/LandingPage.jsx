@@ -67,11 +67,6 @@ export default function LandingPage() {
               Sign In to Platform <ArrowRight className="w-5 h-5" />
             </motion.button>
           </div>
-          
-          <div className="pt-8 flex items-center gap-6 text-sm text-neutral font-medium">
-            <span className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-green-500"/> SOC2 Certified</span>
-            <span className="flex items-center gap-2"><Database className="w-4 h-4 text-secondary"/> 50+ PB Data</span>
-          </div>
         </motion.div>
 
         <motion.div 
@@ -91,27 +86,6 @@ export default function LandingPage() {
               className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-primary/80 via-transparent to-transparent opacity-80" />
-            
-            {/* Glassmorphism overlays */}
-            <motion.div 
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1, duration: 0.5 }}
-              className="absolute bottom-8 left-8 right-8 bg-white/10 backdrop-blur-md border border-white/20 p-5 rounded-xl shadow-2xl flex items-center justify-between"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
-                  <Activity className="text-white w-6 h-6" />
-                </div>
-                <div>
-                  <p className="text-white/70 text-xs font-semibold uppercase tracking-wider">Analysis Complete</p>
-                  <p className="text-white font-bold text-lg">14 Targets Detected</p>
-                </div>
-              </div>
-              <div className="px-3 py-1 bg-green-500/20 border border-green-500/50 rounded-full text-green-300 text-xs font-semibold">
-                99.8% Confidence
-              </div>
-            </motion.div>
           </div>
         </motion.div>
       </section>
