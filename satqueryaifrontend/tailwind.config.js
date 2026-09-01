@@ -7,16 +7,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#000000",
-        panel: "#0A0A0B",
-        "text-main": "#F8FAFC",
-        "hud-teal": "#14B8A6",
-        "hud-amber": "#F59E0B",
-        "hud-crimson": "#E11D48",
+        primary: "#0F172A",
+        secondary: "#3B82F6",
+        neutral: "#64748B",
+        background: "#F8FAFC",
+        surface: "#FFFFFF",
+        border: "#E2E8F0",
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
       },
     },
   },

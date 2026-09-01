@@ -4,26 +4,11 @@
 
 @layer base {
   body {
-    @apply bg-primary text-text-main antialiased m-0 p-0 overflow-hidden font-sans;
+    @apply bg-background text-primary antialiased m-0 p-0 overflow-x-hidden font-sans;
   }
 }
 
-/* Custom HUD scrollbar */
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(20, 184, 166, 0.5); /* hud-teal with opacity */
-}
-
-/* MapLibre overrides for HUD look */
+/* MapLibre overrides */
 .maplibregl-ctrl-bottom-right,
 .maplibregl-ctrl-bottom-left {
   display: none !important;
