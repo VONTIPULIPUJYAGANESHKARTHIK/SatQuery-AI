@@ -606,192 +606,70 @@ export default function Dashboard() {
   );
 
   const renderProfile = () => (
-    <motion.div key="profile" variants={viewContainerVariants} initial="hidden" animate="visible" exit="exit" className="max-w-4xl mx-auto pt-6 pb-20">
-      <motion.div variants={viewItemVariants} className="bg-white/70 dark:bg-slate-900/50 backdrop-blur-3xl border border-white/60 dark:border-white/10 rounded-[2.5rem] shadow-xl p-10">
+    <motion.div key="profile" variants={viewContainerVariants} initial="hidden" animate="visible" exit="exit" className="max-w-3xl mx-auto pt-10">
+      <motion.div variants={viewItemVariants} className="bg-white/70 dark:bg-slate-900/50 backdrop-blur-3xl border border-white/60 dark:border-white/10 rounded-[2rem] shadow-xl p-10 flex flex-col items-center text-center">
+        <div className="w-28 h-28 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center text-4xl font-black mb-6 shadow-sm border border-blue-200 dark:border-blue-800/50">
+          JS
+        </div>
+        <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-2">John Smith</h2>
+        <p className="text-gray-500 dark:text-gray-400 font-semibold mb-8">Lead Geospatial Analyst • john.smith@satquery.ai</p>
         
-        {/* Header Section */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-10 pb-8 border-b border-gray-200/50 dark:border-white/10">
-          <div className="flex items-center gap-6">
-            <div className="relative group cursor-pointer">
-              <div className="w-24 h-24 rounded-[2.5rem] bg-gradient-to-tr from-blue-600 to-indigo-500 text-white flex items-center justify-center text-4xl font-black shadow-lg border-2 border-white/20 group-hover:scale-105 transition-transform">
-                JS
-              </div>
-              <div className="absolute inset-0 bg-black/40 rounded-[2.5rem] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
-                <Shield className="w-8 h-8 text-white" />
-              </div>
-            </div>
-            <div>
-              <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white tracking-tighter">John Smith</h2>
-              <p className="text-blue-600 dark:text-blue-400 font-bold text-sm tracking-tight mb-1">Lead Geospatial Analyst</p>
-              <p className="text-gray-500 dark:text-gray-400 font-semibold text-xs flex items-center gap-2">
-                <Activity className="w-3.5 h-3.5" /> Active Session • IP: 192.168.1.104
-              </p>
-            </div>
-          </div>
-          <button className="bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 px-5 py-2.5 rounded-2xl text-sm font-bold shadow-sm hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors border border-gray-200 dark:border-white/5">
+        <div className="w-full max-w-md space-y-3">
+          <button className="w-full bg-blue-600 text-white px-6 py-3.5 rounded-xl font-bold shadow hover:bg-blue-500 transition-colors">
             Edit Profile
           </button>
+          <button 
+            onClick={handleLogout}
+            className="w-full bg-white dark:bg-slate-800 text-red-600 dark:text-red-400 border border-gray-200 dark:border-white/10 px-6 py-3.5 rounded-xl font-bold shadow-sm hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+          >
+            Sign Out
+          </button>
         </div>
-
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-          <div className="bg-white/50 dark:bg-slate-800/40 border border-gray-100 dark:border-white/5 p-5 rounded-[2rem]">
-            <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-xs font-bold uppercase tracking-widest mb-2">
-              <Database className="w-4 h-4 text-emerald-500" /> Storage Used
-            </div>
-            <div className="text-3xl font-black text-gray-900 dark:text-white">1.4 <span className="text-base text-gray-400 font-semibold">TB</span></div>
-            <div className="w-full bg-gray-200 dark:bg-slate-700 h-1.5 rounded-full mt-3 overflow-hidden">
-              <div className="bg-emerald-500 h-full w-[45%]" />
-            </div>
-          </div>
-          <div className="bg-white/50 dark:bg-slate-800/40 border border-gray-100 dark:border-white/5 p-5 rounded-[2rem]">
-            <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-xs font-bold uppercase tracking-widest mb-2">
-              <Cpu className="w-4 h-4 text-indigo-500" /> GPU Inference
-            </div>
-            <div className="text-3xl font-black text-gray-900 dark:text-white">482 <span className="text-base text-gray-400 font-semibold">hrs</span></div>
-            <div className="w-full bg-gray-200 dark:bg-slate-700 h-1.5 rounded-full mt-3 overflow-hidden">
-              <div className="bg-indigo-500 h-full w-[70%]" />
-            </div>
-          </div>
-          <div className="bg-white/50 dark:bg-slate-800/40 border border-gray-100 dark:border-white/5 p-5 rounded-[2rem]">
-            <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-xs font-bold uppercase tracking-widest mb-2">
-              <CheckCircle2 className="w-4 h-4 text-blue-500" /> Tasks Executed
-            </div>
-            <div className="text-3xl font-black text-gray-900 dark:text-white">1,492</div>
-            <p className="text-[10px] text-gray-500 font-semibold mt-3 uppercase tracking-wider">+14 this week</p>
-          </div>
-        </div>
-
-        {/* API Keys */}
-        <div className="mb-10">
-          <h3 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4">API Access Keys</h3>
-          <div className="bg-gray-50 dark:bg-slate-900/60 border border-gray-200 dark:border-white/10 rounded-2xl p-4 flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-indigo-100 dark:bg-indigo-900/30 rounded-xl flex items-center justify-center">
-                <ShieldCheck className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
-              </div>
-              <div>
-                <p className="text-sm font-bold text-gray-900 dark:text-white">Production REST API Key</p>
-                <p className="text-xs font-mono text-gray-500">sk-prod-*******************a9b2</p>
-              </div>
-            </div>
-            <button className="text-blue-600 dark:text-blue-400 text-xs font-bold hover:underline">Reveal</button>
-          </div>
-        </div>
-
-        {/* Recent Activity Log */}
-        <div>
-          <h3 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4">Recent Activity</h3>
-          <div className="space-y-4">
-            {[
-              { action: 'Executed VQA Inference on Sentinel-2', time: '2 hours ago', icon: MessageSquare },
-              { action: 'Uploaded SAR Dataset (14GB)', time: 'Yesterday at 4:12 PM', icon: CloudLightning },
-              { action: 'Exported GeoJSON Analysis Report', time: 'Yesterday at 1:45 PM', icon: Download },
-            ].map((log, i) => (
-              <div key={i} className="flex items-center gap-4 p-3 hover:bg-gray-50 dark:hover:bg-white/5 rounded-xl transition-colors">
-                <div className="w-8 h-8 bg-gray-100 dark:bg-slate-800 rounded-full flex items-center justify-center">
-                  <log.icon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
-                </div>
-                <div className="flex-1">
-                  <p className="text-sm font-bold text-gray-800 dark:text-gray-200">{log.action}</p>
-                  <p className="text-xs text-gray-500 font-semibold">{log.time}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
       </motion.div>
     </motion.div>
   );
 
   const renderSettings = () => (
-    <motion.div key="settings" variants={viewContainerVariants} initial="hidden" animate="visible" exit="exit" className="max-w-4xl mx-auto pt-6 pb-20">
-      <motion.div variants={viewItemVariants} className="bg-white/70 dark:bg-slate-900/50 backdrop-blur-3xl border border-white/60 dark:border-white/10 rounded-[2.5rem] shadow-xl p-10">
+    <motion.div key="settings" variants={viewContainerVariants} initial="hidden" animate="visible" exit="exit" className="max-w-3xl mx-auto pt-10">
+      <motion.div variants={viewItemVariants} className="bg-white/70 dark:bg-slate-900/50 backdrop-blur-3xl border border-white/60 dark:border-white/10 rounded-[2rem] shadow-xl p-8">
         
-        <div className="mb-10 pb-6 border-b border-gray-200/50 dark:border-white/10">
-          <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white tracking-tighter mb-2">System Settings</h2>
-          <p className="text-gray-500 dark:text-gray-400 font-semibold">Configure workspace standards, AI model preferences, and notifications.</p>
-        </div>
+        <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-2">Settings</h2>
+        <p className="text-gray-500 dark:text-gray-400 font-semibold mb-8">Manage your workspace preferences.</p>
 
-        <div className="space-y-10">
-          {/* Spatial Preferences */}
-          <section>
-            <h3 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4 flex items-center gap-2">
-              <Globe className="w-4 h-4 text-blue-500" /> Workspace Preferences
-            </h3>
-            <div className="bg-gray-50 dark:bg-slate-900/60 border border-gray-200 dark:border-white/10 rounded-[1.5rem] p-6 space-y-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-bold text-gray-900 dark:text-white">Default CRS (Coordinate Reference System)</p>
-                  <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mt-1">Projection used for GeoJSON exports and bounding boxes.</p>
-                </div>
-                <select className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-white/10 text-sm font-bold rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                  <option>EPSG:4326 (WGS84)</option>
-                  <option>EPSG:3857 (Web Mercator)</option>
-                </select>
-              </div>
-              <div className="w-full h-px bg-gray-200 dark:bg-white/10" />
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-bold text-gray-900 dark:text-white">Map Unit Format</p>
-                  <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mt-1">Distance and area measurement defaults.</p>
-                </div>
-                <select className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-white/10 text-sm font-bold rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                  <option>Metric (Meters, Hectares)</option>
-                  <option>Imperial (Feet, Acres)</option>
-                </select>
-              </div>
+        <div className="space-y-4">
+          <div className="bg-white/50 dark:bg-slate-800/40 border border-gray-100 dark:border-white/5 p-5 rounded-2xl flex items-center justify-between">
+            <div>
+              <p className="font-bold text-gray-900 dark:text-white">Dark Mode</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 font-semibold">Toggle dark appearance</p>
             </div>
-          </section>
+            <label className="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" checked={isDarkMode} onChange={toggleTheme} className="sr-only peer" />
+              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+            </label>
+          </div>
 
-          {/* AI Model Settings */}
-          <section>
-            <h3 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4 flex items-center gap-2">
-              <Cpu className="w-4 h-4 text-emerald-500" /> AI Inference Engine
-            </h3>
-            <div className="bg-gray-50 dark:bg-slate-900/60 border border-gray-200 dark:border-white/10 rounded-[1.5rem] p-6 space-y-6">
-              <div className="flex flex-col gap-3">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-bold text-gray-900 dark:text-white">Grounding Confidence Threshold</p>
-                    <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mt-1">Minimum probability to display a bounding box.</p>
-                  </div>
-                  <span className="text-sm font-mono font-bold text-emerald-500 bg-emerald-50 dark:bg-emerald-900/30 px-3 py-1 rounded-lg border border-emerald-500/20">
-                    0.85
-                  </span>
-                </div>
-                <input type="range" min="0.5" max="0.99" step="0.01" defaultValue="0.85" className="w-full accent-emerald-500" />
-              </div>
-              <div className="w-full h-px bg-gray-200 dark:bg-white/10" />
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-bold text-gray-900 dark:text-white">Auto-Align Optical and SAR</p>
-                  <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mt-1">Automatically warp and align multi-modal uploads.</p>
-                </div>
-                <label className="relative inline-flex items-center cursor-pointer">
-                  <input type="checkbox" defaultChecked className="sr-only peer" />
-                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                </label>
-              </div>
+          <div className="bg-white/50 dark:bg-slate-800/40 border border-gray-100 dark:border-white/5 p-5 rounded-2xl flex items-center justify-between">
+            <div>
+              <p className="font-bold text-gray-900 dark:text-white">Notifications</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 font-semibold">Enable alert sounds and popups</p>
             </div>
-          </section>
+            <label className="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" defaultChecked className="sr-only peer" />
+              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+            </label>
+          </div>
 
-          {/* Danger Zone */}
-          <section>
-            <h3 className="text-sm font-bold text-red-600 dark:text-red-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-              Danger Zone
-            </h3>
-            <div className="border border-red-200 dark:border-red-900/50 bg-red-50/50 dark:bg-red-900/10 rounded-[1.5rem] p-6 flex items-center justify-between">
-              <div>
-                <p className="text-sm font-bold text-gray-900 dark:text-white">Clear Global Cache</p>
-                <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mt-1">Delete all temporary warped rasters and masks.</p>
-              </div>
-              <button className="bg-white dark:bg-slate-800 text-red-600 font-bold text-sm px-5 py-2.5 rounded-xl border border-red-200 dark:border-red-900/50 hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors shadow-sm">
-                Clear Cache
-              </button>
+          <div className="bg-white/50 dark:bg-slate-800/40 border border-gray-100 dark:border-white/5 p-5 rounded-2xl flex items-center justify-between">
+            <div>
+              <p className="font-bold text-gray-900 dark:text-white">Language</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 font-semibold">Choose interface language</p>
             </div>
-          </section>
+            <select className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-white/10 text-sm font-bold rounded-lg px-3 py-1.5 outline-none">
+              <option>English</option>
+              <option>French</option>
+              <option>Spanish</option>
+            </select>
+          </div>
         </div>
 
       </motion.div>
