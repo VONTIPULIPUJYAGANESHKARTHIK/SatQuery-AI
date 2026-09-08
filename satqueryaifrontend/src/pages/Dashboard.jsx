@@ -134,7 +134,7 @@ export default function Dashboard() {
       <motion.div variants={viewItemVariants} className="w-full lg:w-[420px] xl:w-[460px] flex flex-col gap-5 h-full overflow-y-auto pr-1">
         
         {/* Ingestion & Task Selection Card */}
-        <div className="bg-white/70 dark:bg-slate-900/60 backdrop-blur-3xl border border-white/60 dark:border-white/10 rounded-[2rem] p-6 shadow-lg transition-colors shrink-0">
+        <div className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl border border-white/50 dark:border-white/10 rounded-[2rem] p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_8px_30px_rgb(0,0,0,0.03)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_8px_30px_rgba(0,0,0,0.4)] transition-colors shrink-0">
           
           {/* Feature 11: Multi-Modal Upload Tabs */}
           <div className="mb-5">
@@ -150,7 +150,7 @@ export default function Dashboard() {
                   onClick={() => setIngestionMode(mode.id)}
                   className={`py-2 rounded-xl text-xs font-bold transition-all ${
                     ingestionMode === mode.id 
-                      ? 'bg-blue-600 text-white shadow-md' 
+                      ? 'bg-indigo-600 text-white shadow-md' 
                       : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                   }`}
                 >
@@ -180,7 +180,7 @@ export default function Dashboard() {
                   }}
                   className={`flex items-center gap-2 p-2.5 rounded-xl text-xs font-bold border transition-all text-left ${
                     selectedTask === task.id
-                      ? 'bg-blue-50 dark:bg-blue-900/30 border-blue-500 text-blue-600 dark:text-blue-400'
+                      ? 'bg-indigo-50 dark:bg-indigo-900/30 border-indigo-500 text-indigo-600 dark:text-indigo-400'
                       : 'bg-white/50 dark:bg-slate-800/40 border-gray-200 dark:border-white/5 text-gray-600 dark:text-gray-400 hover:border-gray-300'
                   }`}
                 >
@@ -207,7 +207,7 @@ export default function Dashboard() {
               value={promptText}
               onChange={(e) => setPromptText(e.target.value)}
               placeholder="Ask a question or enter entities to ground..."
-              className="w-full px-4 py-3 bg-white dark:bg-slate-800/80 border border-gray-200 dark:border-white/10 rounded-2xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 text-xs font-semibold resize-none shadow-inner dark:text-white"
+              className="w-full px-4 py-3 bg-white dark:bg-slate-800/80 border border-gray-200 dark:border-white/10 rounded-2xl focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 text-xs font-semibold resize-none shadow-inner dark:text-white"
             />
 
             <motion.button 
@@ -217,7 +217,7 @@ export default function Dashboard() {
                 setIsProcessing(true);
                 setTimeout(() => { setIsProcessing(false); setHasAnalyzed(true); }, 1000);
               }}
-              className="w-full bg-blue-600 text-white py-3.5 rounded-2xl text-xs font-extrabold shadow-lg hover:bg-blue-500 transition-all flex items-center justify-center gap-2"
+              className="w-full bg-indigo-600 text-white py-3.5 rounded-2xl text-xs font-extrabold shadow-lg hover:bg-indigo-500 transition-all flex items-center justify-center gap-2"
             >
               {isProcessing ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
               {isProcessing ? 'Executing Spatial AI Inference...' : 'Run Specialist Model'}
@@ -226,7 +226,7 @@ export default function Dashboard() {
         </div>
 
         {/* Feature 8: Image Metadata Validator Panel */}
-        <div className="bg-white/70 dark:bg-slate-900/60 backdrop-blur-3xl border border-white/60 dark:border-white/10 rounded-[2rem] p-5 shadow-lg transition-colors shrink-0">
+        <div className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl border border-white/50 dark:border-white/10 rounded-[2rem] p-5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_8px_30px_rgb(0,0,0,0.03)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_8px_30px_rgba(0,0,0,0.4)] transition-colors shrink-0">
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-xs font-mono font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest flex items-center gap-2">
               <FileCheck className="w-4 h-4 text-emerald-500" /> Header Metadata Validator
@@ -247,7 +247,7 @@ export default function Dashboard() {
             </div>
             <div className="bg-gray-50 dark:bg-slate-800/50 p-2.5 rounded-xl border border-gray-100 dark:border-white/5">
               <span className="text-gray-400 block text-[9px]">MODALITY</span>
-              <span className="text-blue-600 dark:text-blue-400">{ingestionMode === 'Fusion' ? 'Optical + SAR (Dual)' : 'Sentinel-2 COG'}</span>
+              <span className="text-indigo-600 dark:text-indigo-400">{ingestionMode === 'Fusion' ? 'Optical + SAR (Dual)' : 'Sentinel-2 COG'}</span>
             </div>
             <div className="bg-gray-50 dark:bg-slate-800/50 p-2.5 rounded-xl border border-gray-100 dark:border-white/5">
               <span className="text-gray-400 block text-[9px]">IMAGE SIZE</span>
@@ -257,10 +257,10 @@ export default function Dashboard() {
         </div>
 
         {/* Feature 9: Auditable Execution Trace Log */}
-        <div className="bg-white/70 dark:bg-slate-900/60 backdrop-blur-3xl border border-white/60 dark:border-white/10 rounded-[2rem] p-5 shadow-lg transition-colors shrink-0">
+        <div className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl border border-white/50 dark:border-white/10 rounded-[2rem] p-5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_8px_30px_rgb(0,0,0,0.03)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_8px_30px_rgba(0,0,0,0.4)] transition-colors shrink-0">
           <button 
             onClick={() => setShowAuditTrace(!showAuditTrace)}
-            className="w-full flex items-center justify-between text-xs font-mono font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest hover:text-blue-600 transition-colors"
+            className="w-full flex items-center justify-between text-xs font-mono font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest hover:text-indigo-600 transition-colors"
           >
             <span className="flex items-center gap-2">
               <Terminal className="w-4 h-4 text-indigo-500" /> Cryptographic Trace Log
@@ -409,7 +409,7 @@ export default function Dashboard() {
 
           <div className="flex items-center gap-3">
             {ingestionMode === 'Bi-Temporal' && (
-              <span className="text-[11px] font-mono text-blue-300 font-bold bg-blue-900/40 px-3 py-1 rounded-lg border border-blue-500/30">
+              <span className="text-[11px] font-mono text-indigo-300 font-bold bg-indigo-900/40 px-3 py-1 rounded-lg border border-indigo-500/30">
                 SWIPE POS: {swipePos}%
               </span>
             )}
@@ -427,7 +427,7 @@ export default function Dashboard() {
             <button 
               onClick={() => setShowOptical(!showOptical)}
               className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-colors ${
-                showOptical ? 'bg-blue-600 text-white border-blue-400' : 'bg-slate-800 text-gray-400 border-white/10'
+                showOptical ? 'bg-indigo-600 text-white border-indigo-400' : 'bg-slate-800 text-gray-400 border-white/10'
               }`}
             >
               Optical
@@ -460,7 +460,7 @@ export default function Dashboard() {
               step="0.05"
               value={maskOpacity}
               onChange={(e) => setMaskOpacity(Number(e.target.value))}
-              className="w-24 accent-blue-500"
+              className="w-24 accent-indigo-500"
             />
             <span className="w-8 text-right">{Math.round(maskOpacity * 100)}%</span>
           </div>
@@ -488,7 +488,7 @@ export default function Dashboard() {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => setActiveTab('Spatial Query')}
-          className="bg-blue-600 text-white px-6 py-3 rounded-full text-sm font-bold shadow-lg hover:bg-blue-500 transition-all flex items-center gap-2 group"
+          className="bg-indigo-600 text-white px-6 py-3 rounded-full text-sm font-bold shadow-lg hover:bg-indigo-500 transition-all flex items-center gap-2 group"
         >
           Open Workspace <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
         </motion.button>
@@ -499,11 +499,11 @@ export default function Dashboard() {
         <motion.div 
           variants={viewItemVariants}
           whileHover={{ y: -4 }}
-          className="md:col-span-2 bg-white/70 dark:bg-slate-900/50 backdrop-blur-3xl border border-white/60 dark:border-white/10 p-8 rounded-[2.5rem] shadow-lg transition-colors relative overflow-hidden"
+          className="md:col-span-2 bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl border border-white/50 dark:border-white/10 p-8 rounded-[2.5rem] shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_8px_30px_rgb(0,0,0,0.03)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_8px_30px_rgba(0,0,0,0.4)] transition-colors relative overflow-hidden"
         >
           <div className="flex justify-between items-start mb-6">
-            <div className="w-14 h-14 bg-white dark:bg-slate-800 rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 dark:border-white/10">
-              <ScanSearch className="w-7 h-7 text-blue-600 dark:text-blue-400" />
+            <div className="w-14 h-14 bg-white dark:bg-slate-800 rounded-2xl flex items-center justify-center shadow-sm border border-indigo-50 dark:border-white/10">
+              <ScanSearch className="w-7 h-7 text-indigo-600 dark:text-indigo-400" />
             </div>
             <span className="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-sm font-bold">
               +14.8%
@@ -516,10 +516,10 @@ export default function Dashboard() {
         <motion.div 
           variants={viewItemVariants}
           whileHover={{ y: -4 }}
-          className="md:col-span-1 bg-white/70 dark:bg-slate-900/50 backdrop-blur-3xl border border-white/60 dark:border-white/10 p-8 rounded-[2.5rem] shadow-lg transition-colors flex flex-col justify-between"
+          className="md:col-span-1 bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl border border-white/50 dark:border-white/10 p-8 rounded-[2.5rem] shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_8px_30px_rgb(0,0,0,0.03)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_8px_30px_rgba(0,0,0,0.4)] transition-colors flex flex-col justify-between"
         >
           <div>
-            <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-[1.25rem] flex items-center justify-center shadow-sm border border-gray-100 dark:border-white/10 mb-4">
+            <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-[1.25rem] flex items-center justify-center shadow-sm border border-indigo-50 dark:border-white/10 mb-4">
               <Library className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
             </div>
             <h3 className="text-gray-500 dark:text-gray-400 text-sm font-bold tracking-tight">Data Indexed</h3>
@@ -530,10 +530,10 @@ export default function Dashboard() {
         <motion.div 
           variants={viewItemVariants}
           whileHover={{ y: -4 }}
-          className="md:col-span-1 bg-white/70 dark:bg-slate-900/50 backdrop-blur-3xl border border-white/60 dark:border-white/10 p-8 rounded-[2.5rem] shadow-lg transition-colors flex flex-col justify-between"
+          className="md:col-span-1 bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl border border-white/50 dark:border-white/10 p-8 rounded-[2.5rem] shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_8px_30px_rgb(0,0,0,0.03)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_8px_30px_rgba(0,0,0,0.4)] transition-colors flex flex-col justify-between"
         >
           <div>
-            <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-[1.25rem] flex items-center justify-center shadow-sm border border-gray-100 dark:border-white/10 mb-4">
+            <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-[1.25rem] flex items-center justify-center shadow-sm border border-rose-50 dark:border-white/10 mb-4">
               <Activity className="w-6 h-6 text-rose-600 dark:text-rose-400" />
             </div>
             <h3 className="text-gray-500 dark:text-gray-400 text-sm font-bold tracking-tight">Specialist Models</h3>
@@ -546,7 +546,7 @@ export default function Dashboard() {
 
   const renderDataIngestion = () => (
     <motion.div key="ingestion" variants={viewContainerVariants} initial="hidden" animate="visible" exit="exit" className="max-w-4xl mx-auto pt-6">
-      <motion.div variants={viewItemVariants} className="bg-white/70 dark:bg-slate-900/50 backdrop-blur-3xl border border-white/60 dark:border-white/10 rounded-[2.5rem] shadow-xl p-10 transition-colors">
+      <motion.div variants={viewItemVariants} className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl border border-white/50 dark:border-white/10 p-10 rounded-[2.5rem] shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_8px_30px_rgb(0,0,0,0.03)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_8px_30px_rgba(0,0,0,0.4)] transition-colors">
         <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tighter mb-8">Multi-Modal Ingestion Portal</h2>
         
         {/* Mode Selector */}
@@ -561,7 +561,7 @@ export default function Dashboard() {
               onClick={() => setIngestionMode(mode.id)}
               className={`p-4 rounded-2xl text-xs font-bold border transition-all text-center ${
                 ingestionMode === mode.id
-                  ? 'bg-blue-600 text-white border-blue-500 shadow-md'
+                  ? 'bg-indigo-600 text-white border-indigo-500 shadow-md'
                   : 'bg-white/50 dark:bg-slate-800/40 border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300'
               }`}
             >
@@ -572,7 +572,7 @@ export default function Dashboard() {
 
         <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-[2rem] p-16 flex flex-col items-center justify-center text-center bg-gray-50/50 dark:bg-slate-800/30 hover:bg-white dark:hover:bg-slate-800/80 transition-colors cursor-pointer group">
           <div className="w-16 h-16 bg-white dark:bg-slate-700 rounded-full flex items-center justify-center shadow-sm border border-gray-100 dark:border-white/10 mb-4 group-hover:scale-110 transition-transform">
-            <CloudLightning className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+            <CloudLightning className="w-8 h-8 text-indigo-600 dark:text-indigo-400" />
           </div>
           <h3 className="text-xl font-extrabold text-gray-900 dark:text-white mb-2 tracking-tight">Drop {ingestionMode} Satellite Assets Here</h3>
           <p className="text-gray-500 dark:text-gray-400 font-semibold text-xs max-w-sm">Supports GeoTIFF, COG, Sentinel-1/2, and RADARSAT-2 data files.</p>
@@ -596,10 +596,10 @@ export default function Dashboard() {
           { name: 'Port of Long Beach SAR', type: 'Uploaded', size: '1.2 GB', status: 'Indexed' },
           { name: 'Amazon Rainforest Bi-Temporal', type: 'AWS S3 Sync', size: '400 GB', status: 'Syncing' },
         ].map((ds, i) => (
-          <div key={i} className="bg-white/70 dark:bg-slate-900/50 backdrop-blur-3xl border border-white/60 dark:border-white/10 p-8 rounded-[2.5rem] shadow-lg">
+          <div key={i} className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl border border-white/50 dark:border-white/10 p-8 rounded-[2.5rem] shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_8px_30px_rgb(0,0,0,0.03)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_8px_30px_rgba(0,0,0,0.4)] transition-colors">
             <div className="flex justify-between items-start mb-6">
-              <div className="w-12 h-12 bg-blue-50 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center">
-                <Library className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+              <div className="w-12 h-12 bg-indigo-50 dark:bg-indigo-900/30 rounded-2xl flex items-center justify-center">
+                <Library className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
               </div>
               <span className="px-3 py-1 bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 rounded-full text-xs font-bold">
                 {ds.status}
@@ -618,8 +618,8 @@ export default function Dashboard() {
 
   const renderProfile = () => (
     <motion.div key="profile" variants={viewContainerVariants} initial="hidden" animate="visible" exit="exit" className="max-w-3xl mx-auto pt-10">
-      <motion.div variants={viewItemVariants} className="bg-white/70 dark:bg-slate-900/50 backdrop-blur-3xl border border-white/60 dark:border-white/10 rounded-[2rem] shadow-xl p-10 flex flex-col items-center text-center">
-        <div className="w-28 h-28 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center text-4xl font-black mb-6 shadow-sm border border-blue-200 dark:border-blue-800/50">
+      <motion.div variants={viewItemVariants} className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl border border-white/50 dark:border-white/10 p-10 rounded-[2.5rem] shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_8px_30px_rgb(0,0,0,0.03)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_8px_30px_rgba(0,0,0,0.4)] transition-colors flex flex-col items-center text-center">
+        <div className="w-28 h-28 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-4xl font-black mb-6 shadow-sm border border-indigo-200 dark:border-indigo-800/50">
           {profileData.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}
         </div>
         
@@ -631,7 +631,7 @@ export default function Dashboard() {
                 type="text" 
                 value={profileData.name}
                 onChange={(e) => setProfileData({...profileData, name: e.target.value})}
-                className="w-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm font-bold focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm font-bold focus:ring-2 focus:ring-indigo-500 outline-none"
               />
             </div>
             <div>
@@ -640,7 +640,7 @@ export default function Dashboard() {
                 type="text" 
                 value={profileData.role}
                 onChange={(e) => setProfileData({...profileData, role: e.target.value})}
-                className="w-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm font-bold focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm font-bold focus:ring-2 focus:ring-indigo-500 outline-none"
               />
             </div>
             <div>
@@ -649,7 +649,7 @@ export default function Dashboard() {
                 type="email" 
                 value={profileData.email}
                 onChange={(e) => setProfileData({...profileData, email: e.target.value})}
-                className="w-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm font-bold focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm font-bold focus:ring-2 focus:ring-indigo-500 outline-none"
               />
             </div>
           </div>
@@ -679,7 +679,7 @@ export default function Dashboard() {
           ) : (
             <button 
               onClick={() => setIsEditingProfile(true)}
-              className="w-full bg-blue-600 text-white px-6 py-3.5 rounded-xl font-bold shadow hover:bg-blue-500 transition-colors"
+              className="w-full bg-indigo-600 text-white px-6 py-3.5 rounded-xl font-bold shadow hover:bg-indigo-500 transition-colors"
             >
               Edit Profile
             </button>
@@ -697,7 +697,7 @@ export default function Dashboard() {
 
   const renderSettings = () => (
     <motion.div key="settings" variants={viewContainerVariants} initial="hidden" animate="visible" exit="exit" className="max-w-3xl mx-auto pt-10">
-      <motion.div variants={viewItemVariants} className="bg-white/70 dark:bg-slate-900/50 backdrop-blur-3xl border border-white/60 dark:border-white/10 rounded-[2rem] shadow-xl p-8">
+      <motion.div variants={viewItemVariants} className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl border border-white/50 dark:border-white/10 p-8 rounded-[2.5rem] shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_8px_30px_rgb(0,0,0,0.03)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_8px_30px_rgba(0,0,0,0.4)] transition-colors">
         
         <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-2">Settings</h2>
         <p className="text-gray-500 dark:text-gray-400 font-semibold mb-8">Manage your workspace preferences.</p>
@@ -710,7 +710,7 @@ export default function Dashboard() {
             </div>
             <label className="relative inline-flex items-center cursor-pointer">
               <input type="checkbox" checked={isDarkMode} onChange={toggleTheme} className="sr-only peer" />
-              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 dark:peer-focus:ring-indigo-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-indigo-600"></div>
             </label>
           </div>
 
@@ -721,7 +721,7 @@ export default function Dashboard() {
             </div>
             <label className="relative inline-flex items-center cursor-pointer">
               <input type="checkbox" defaultChecked className="sr-only peer" />
-              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 dark:peer-focus:ring-indigo-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-indigo-600"></div>
             </label>
           </div>
 
@@ -846,7 +846,7 @@ export default function Dashboard() {
 
         <div className="flex items-center gap-3">
           {ingestionMode === 'Bi-Temporal' && (
-            <span className="text-[11px] font-mono text-blue-300 font-bold bg-blue-900/40 px-3 py-1 rounded-lg border border-blue-500/30">
+            <span className="text-[11px] font-mono text-indigo-300 font-bold bg-indigo-900/40 px-3 py-1 rounded-lg border border-indigo-500/30">
               SWIPE POS: {swipePos}%
             </span>
           )}
@@ -863,7 +863,7 @@ export default function Dashboard() {
           <button 
             onClick={() => setShowOptical(!showOptical)}
             className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-colors ${
-              showOptical ? 'bg-blue-600 text-white border-blue-400' : 'bg-slate-800 text-gray-400 border-white/10'
+              showOptical ? 'bg-indigo-600 text-white border-indigo-400' : 'bg-slate-800 text-gray-400 border-white/10'
             }`}
           >
             Optical
@@ -898,7 +898,7 @@ export default function Dashboard() {
             step="0.05"
             value={maskOpacity}
             onChange={(e) => setMaskOpacity(Number(e.target.value))}
-            className="w-24 accent-blue-500"
+            className="w-24 accent-indigo-500"
           />
           <span className="w-8 text-right">{Math.round(maskOpacity * 100)}%</span>
         </div>
@@ -920,18 +920,18 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-indigo-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 font-sans flex antialiased selection:bg-blue-200 dark:selection:bg-blue-900 text-gray-800 dark:text-gray-100 transition-colors duration-500">
+    <div className="min-h-screen bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-indigo-50 via-white to-violet-50 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950/20 font-sans flex antialiased selection:bg-indigo-200 dark:selection:bg-indigo-900 text-gray-800 dark:text-gray-100 transition-colors duration-500">
       
       {/* Sidebar Navigation */}
       <motion.div 
         initial={{ x: -300 }}
         animate={{ x: 0 }}
         transition={springTransition}
-        className="w-[19rem] border-r border-white/60 dark:border-white/10 bg-white/40 dark:bg-slate-900/50 backdrop-blur-3xl flex flex-col z-20 shadow-xl transition-colors duration-500 shrink-0"
+        className="w-[19rem] border-r border-white/50 dark:border-white/10 bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl flex flex-col z-20 shadow-[0_0_50px_rgba(0,0,0,0.03)] dark:shadow-[0_0_50px_rgba(0,0,0,0.5)] transition-colors duration-500 shrink-0"
       >
         <div className="p-8 pb-6">
           <div className="flex items-center gap-4 mb-10 cursor-pointer" onClick={() => navigate('/')}>
-            <div className="w-10 h-10 bg-blue-600 rounded-[1rem] flex items-center justify-center shadow-lg">
+            <div className="w-10 h-10 bg-indigo-600 rounded-[1rem] flex items-center justify-center shadow-lg">
               <Globe className="w-5 h-5 text-white" />
             </div>
             <span className="font-extrabold text-2xl tracking-tighter text-gray-900 dark:text-white">SatQuery</span>
@@ -948,7 +948,7 @@ export default function Dashboard() {
                 onClick={() => setActiveTab(item.name)}
                 className={`w-full flex items-center gap-3.5 px-4 py-3.5 rounded-[1.25rem] text-sm font-bold transition-all ${
                   activeTab === item.name
-                    ? 'bg-white dark:bg-slate-800 shadow-md border border-gray-100 dark:border-white/10 text-blue-600 dark:text-blue-400'
+                    ? 'bg-white dark:bg-slate-800 shadow-md border border-gray-100 dark:border-white/10 text-indigo-600 dark:text-indigo-400'
                     : 'text-gray-500 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white border border-transparent'
                 }`}
               >
@@ -968,7 +968,7 @@ export default function Dashboard() {
               onClick={() => setActiveTab('Settings')}
               className={`w-full flex items-center gap-3.5 px-4 py-3.5 rounded-[1.25rem] text-sm font-bold transition-all ${
                 activeTab === 'Settings'
-                  ? 'bg-white dark:bg-slate-800 shadow-md border border-gray-100 dark:border-white/10 text-blue-600 dark:text-blue-400'
+                  ? 'bg-white dark:bg-slate-800 shadow-md border border-gray-100 dark:border-white/10 text-indigo-600 dark:text-indigo-400'
                   : 'text-gray-500 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white border border-transparent'
               }`}
             >
@@ -993,24 +993,24 @@ export default function Dashboard() {
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={springTransition}
-          className="h-[5.5rem] bg-white/40 dark:bg-slate-900/50 backdrop-blur-2xl border-b border-white/60 dark:border-white/10 flex items-center justify-between px-10 shadow-sm relative z-10 transition-colors duration-500 shrink-0"
+          className="h-[5.5rem] bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl border-b border-white/50 dark:border-white/10 flex items-center justify-between px-10 shadow-sm relative z-10 transition-colors duration-500 shrink-0"
         >
           <div className="flex items-center gap-3">
             <div className="text-xl font-bold text-gray-800 dark:text-white tracking-tighter">{activeTab}</div>
-            <span className="px-2.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-[10px] font-mono font-bold rounded-full border border-blue-400/30">
+            <span className="px-2.5 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 text-[10px] font-mono font-bold rounded-full border border-indigo-400/30">
               V4.2 AI SPECIALIST
             </span>
           </div>
 
           <div className="flex items-center gap-6">
-            <button onClick={toggleTheme} className="text-gray-400 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors p-2.5 rounded-full hover:bg-gray-100 dark:hover:bg-white/10">
+            <button onClick={toggleTheme} className="text-gray-400 dark:text-gray-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors p-2.5 rounded-full hover:bg-gray-100 dark:hover:bg-white/10">
               {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
             
             <div className="relative">
-              <button onClick={() => setIsNotificationsOpen(!isNotificationsOpen)} className="text-gray-400 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors relative p-2.5 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 focus:outline-none">
+              <button onClick={() => setIsNotificationsOpen(!isNotificationsOpen)} className="text-gray-400 dark:text-gray-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors relative p-2.5 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 focus:outline-none">
                 <Bell className="w-5 h-5" />
-                <span className="absolute top-2 right-2.5 w-2.5 h-2.5 bg-blue-500 rounded-full border-2 border-white dark:border-slate-900" />
+                <span className="absolute top-2 right-2.5 w-2.5 h-2.5 bg-indigo-500 rounded-full border-2 border-white dark:border-slate-900" />
               </button>
 
               <AnimatePresence>
@@ -1023,7 +1023,7 @@ export default function Dashboard() {
                   >
                     <div className="p-4 border-b border-gray-100 dark:border-white/5 flex justify-between items-center">
                       <h3 className="text-sm font-extrabold text-gray-900 dark:text-white tracking-tight">Notifications</h3>
-                      <button className="text-[10px] font-bold text-blue-600 dark:text-blue-400 hover:underline">Mark all read</button>
+                      <button className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 hover:underline">Mark all read</button>
                     </div>
                     <div className="max-h-80 overflow-y-auto p-2 space-y-1">
                       {[
@@ -1032,8 +1032,8 @@ export default function Dashboard() {
                         { title: 'System Update', desc: 'SatQuery Models v4.2 deployed.', time: 'Yesterday', unread: false }
                       ].map((n, i) => (
                         <div key={i} className="p-3 rounded-2xl hover:bg-gray-50 dark:hover:bg-white/5 transition-colors cursor-pointer flex gap-3 relative">
-                          {n.unread && <div className="w-2 h-2 rounded-full bg-blue-500 absolute left-1 top-5" />}
-                          <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${n.unread ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' : 'bg-gray-100 dark:bg-slate-700 text-gray-500'}`}>
+                          {n.unread && <div className="w-2 h-2 rounded-full bg-indigo-500 absolute left-1 top-5" />}
+                          <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${n.unread ? 'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400' : 'bg-gray-100 dark:bg-slate-700 text-gray-500'}`}>
                             <Bell className="w-4 h-4" />
                           </div>
                           <div>
@@ -1058,7 +1058,7 @@ export default function Dashboard() {
                   <div className="text-sm font-bold text-gray-900 dark:text-white tracking-tight">{profileData.name}</div>
                   <div className="text-xs font-semibold text-gray-500 dark:text-gray-400">{profileData.role.split(' ')[0]} Corp</div>
                 </div>
-                <div className="w-11 h-11 rounded-[1rem] bg-white dark:bg-slate-800 border border-gray-200 dark:border-white/10 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold text-sm shadow-sm">
+                <div className="w-11 h-11 rounded-[1rem] bg-white dark:bg-slate-800 border border-gray-200 dark:border-white/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-sm shadow-sm">
                   {profileData.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}
                 </div>
               </button>
@@ -1071,7 +1071,7 @@ export default function Dashboard() {
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
                     className="absolute right-0 mt-4 w-56 bg-white/90 dark:bg-slate-800/90 backdrop-blur-3xl border border-white/60 dark:border-white/10 rounded-3xl shadow-2xl overflow-hidden z-50 p-2"
                   >
-                    <button onClick={() => { setActiveTab('My Profile'); setIsProfileOpen(false); }} className="w-full text-left px-4 py-3 rounded-2xl text-sm font-bold text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-white/10 flex items-center gap-3">
+                    <button onClick={() => { setActiveTab('My Profile'); setIsProfileOpen(false); }} className="w-full text-left px-4 py-3 rounded-2xl text-sm font-bold text-gray-700 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-white/10 flex items-center gap-3">
                       <User className="w-4 h-4" /> Identity Profile
                     </button>
                     <button onClick={handleLogout} className="w-full text-left px-4 py-3 rounded-2xl text-sm font-bold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30 flex items-center gap-3">

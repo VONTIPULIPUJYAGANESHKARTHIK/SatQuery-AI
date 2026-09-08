@@ -9,7 +9,7 @@ export default {
     extend: {
       colors: {
         primary: "#0F172A",
-        secondary: "#3B82F6",
+        secondary: "#4F46E5", /* Indigo 600 */
         neutral: "#64748B",
         background: "#F8FAFC",
         surface: "#FFFFFF",

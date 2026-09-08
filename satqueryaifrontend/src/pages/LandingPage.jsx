@@ -32,7 +32,7 @@ export default function LandingPage() {
   const { isDarkMode, toggleTheme } = useTheme();
 
   return (
-    <div className="min-h-screen bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-indigo-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 font-sans overflow-x-hidden selection:bg-blue-200 dark:selection:bg-blue-900 antialiased text-gray-800 dark:text-gray-100 transition-colors duration-500">
+    <div className="min-h-screen bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-indigo-50 via-white to-violet-50 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950/20 font-sans overflow-x-hidden selection:bg-indigo-200 dark:selection:bg-indigo-900 antialiased text-gray-800 dark:text-gray-100 transition-colors duration-500">
       
       {/* Top Navigation - Floating Glass Pill */}
       <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
@@ -40,19 +40,19 @@ export default function LandingPage() {
           initial={{ y: -40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={springTransition}
-          className="w-full max-w-5xl bg-white/70 dark:bg-slate-900/50 backdrop-blur-3xl border border-white/60 dark:border-white/10 py-3 px-6 flex justify-between items-center rounded-full shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_8px_30px_rgba(0,0,0,0.5)] transition-colors duration-500"
+          className="w-full max-w-5xl bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl border border-white/40 dark:border-white/10 py-3 px-6 flex justify-between items-center rounded-full shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_8px_30px_rgb(0,0,0,0.05)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_8px_30px_rgba(0,0,0,0.5)] transition-colors duration-500"
         >
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
-            <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_4px_10px_rgba(37,99,235,0.3)]">
+            <div className="w-8 h-8 bg-gradient-to-tr from-indigo-600 to-violet-500 rounded-full flex items-center justify-center shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_4px_10px_rgba(79,70,229,0.3)]">
               <Globe className="w-4 h-4 text-white" />
             </div>
-            <span className="font-bold text-lg tracking-tight text-gray-900 dark:text-white">SatQuery AI</span>
+            <span className="font-extrabold text-lg tracking-tight text-gray-900 dark:text-white">SatQuery AI</span>
           </div>
           <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-gray-500 dark:text-gray-400">
-            <a href="#features" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Platform</a>
-            <a href="#how-it-works" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">How it Works</a>
-            <a href="#solutions" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Solutions</a>
-            <a href="#security" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Security</a>
+            <a href="#features" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Platform</a>
+            <a href="#how-it-works" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">How it Works</a>
+            <a href="#solutions" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Solutions</a>
+            <a href="#security" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Security</a>
             
             <div className="flex items-center gap-4 ml-2 pl-6 border-l border-gray-200/50 dark:border-white/10">
               <button 
@@ -66,7 +66,7 @@ export default function LandingPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => navigate('/login')}
-                className="bg-blue-600 text-white px-5 py-2.5 rounded-full hover:bg-blue-700 transition-all shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_4px_15px_rgba(37,99,235,0.4)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_0_25px_rgba(37,99,235,0.6)] flex items-center gap-2 relative overflow-hidden group"
+                className="bg-indigo-600 text-white px-5 py-2.5 rounded-full hover:bg-indigo-700 transition-all shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_4px_15px_rgba(79,70,229,0.4)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_0_25px_rgba(79,70,229,0.6)] flex items-center gap-2 relative overflow-hidden group"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                 Sign In <ChevronRight className="w-4 h-4" />
@@ -86,7 +86,7 @@ export default function LandingPage() {
         >
           <motion.h1 variants={itemVariants} className="text-6xl md:text-7xl font-extrabold text-gray-900 dark:text-white leading-[1.1] tracking-tight">
             Planetary scale <br /> 
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500 dark:from-blue-400 dark:to-indigo-300 filter drop-shadow-sm">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-500 dark:from-indigo-400 dark:to-violet-400 filter drop-shadow-sm">
               intelligence.
             </span>
           </motion.h1>
@@ -98,7 +98,7 @@ export default function LandingPage() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => navigate('/login')}
-              className="bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_10px_30px_rgba(37,99,235,0.3)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_0_40px_rgba(37,99,235,0.5)] transition-all flex items-center gap-2 group relative overflow-hidden"
+              className="bg-gradient-to-r from-indigo-600 to-violet-600 text-white px-8 py-4 rounded-full text-lg font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_10px_30px_rgba(79,70,229,0.3)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_0_40px_rgba(79,70,229,0.6)] transition-all flex items-center gap-2 group relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
               Start Analyzing Now <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -112,8 +112,8 @@ export default function LandingPage() {
           transition={{ ...springTransition, delay: 0.3 }}
           className="flex-1 w-full relative"
         >
-          <div className="absolute -inset-10 bg-blue-400/20 dark:bg-blue-600/30 rounded-full blur-[100px] opacity-50 mix-blend-multiply dark:mix-blend-screen pointer-events-none transition-colors duration-500" />
-          <div className="aspect-[4/3] rounded-[2rem] border border-white/60 dark:border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,1),0_20px_50px_rgb(0,0,0,0.1)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_20px_50px_rgba(0,0,0,0.5)] bg-white/40 dark:bg-slate-900/40 backdrop-blur-3xl overflow-hidden relative group p-2 transition-colors duration-500">
+          <div className="absolute -inset-10 bg-indigo-400/20 dark:bg-violet-600/30 rounded-full blur-[120px] opacity-60 mix-blend-multiply dark:mix-blend-screen pointer-events-none transition-colors duration-500" />
+          <div className="aspect-[4/3] rounded-[2rem] border border-white/40 dark:border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,1),0_20px_50px_rgb(0,0,0,0.1)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_20px_50px_rgba(0,0,0,0.5)] bg-white/40 dark:bg-slate-900/40 backdrop-blur-3xl overflow-hidden relative group p-2 transition-colors duration-500">
             <img 
               src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" 
               alt="Satellite Earth" 
@@ -154,12 +154,12 @@ export default function LandingPage() {
               <motion.div 
                 key={i}
                 variants={itemVariants}
-                className="bg-white/60 dark:bg-slate-900/50 backdrop-blur-3xl border border-white/60 dark:border-white/10 p-8 rounded-[2rem] shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_8px_30px_rgba(0,0,0,0.4)] relative group hover:bg-white/80 dark:hover:bg-slate-800/60 transition-colors"
+                className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl border border-white/50 dark:border-white/10 p-8 rounded-[2rem] shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_8px_30px_rgb(0,0,0,0.03)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_8px_30px_rgba(0,0,0,0.4)] relative group hover:bg-white/60 dark:hover:bg-slate-800/60 transition-colors"
               >
-                <div className="absolute -top-6 left-8 bg-blue-600 rounded-2xl p-3 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_10px_20px_rgba(37,99,235,0.3)] group-hover:-translate-y-2 transition-transform duration-300 ease-out">
+                <div className="absolute -top-6 left-8 bg-indigo-600 rounded-2xl p-3 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_10px_20px_rgba(79,70,229,0.3)] group-hover:-translate-y-2 transition-transform duration-300 ease-out">
                   <feature.icon className="w-6 h-6 text-white" />
                 </div>
-                <div className="text-6xl font-black text-gray-100/50 dark:text-white/5 absolute top-6 right-6 -z-10 select-none tracking-tighter transition-colors">{feature.step}</div>
+                <div className="text-6xl font-black text-indigo-900/5 dark:text-white/5 absolute top-6 right-6 -z-10 select-none tracking-tighter transition-colors">{feature.step}</div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mt-6 mb-3 tracking-tight">{feature.title}</h3>
                 <p className="text-gray-500 dark:text-gray-400 leading-relaxed font-medium">{feature.desc}</p>
               </motion.div>
@@ -197,10 +197,10 @@ export default function LandingPage() {
                 key={i}
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
-                className="bg-white/70 dark:bg-slate-900/50 backdrop-blur-3xl border border-white/60 dark:border-white/10 p-8 rounded-[2rem] shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_8px_30px_rgba(0,0,0,0.4)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_20px_40px_rgb(0,0,0,0.08)] dark:hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_20px_40px_rgba(0,0,0,0.6)] transition-all group"
+                className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl border border-white/50 dark:border-white/10 p-8 rounded-[2rem] shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_8px_30px_rgb(0,0,0,0.03)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_8px_30px_rgba(0,0,0,0.4)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,1),0_20px_40px_rgb(0,0,0,0.06)] dark:hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_20px_40px_rgba(0,0,0,0.6)] transition-all group"
               >
-                <div className="w-14 h-14 bg-white dark:bg-slate-800 border border-gray-100 dark:border-white/10 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:bg-blue-600 group-hover:border-blue-500 transition-colors">
-                  <feature.icon className="w-7 h-7 text-blue-600 dark:text-blue-400 group-hover:text-white transition-colors" />
+                <div className="w-14 h-14 bg-white dark:bg-slate-800 border border-indigo-50 dark:border-white/10 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:bg-indigo-600 group-hover:border-indigo-500 transition-colors">
+                  <feature.icon className="w-7 h-7 text-indigo-600 dark:text-indigo-400 group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">{feature.title}</h3>
                 <p className="text-gray-500 dark:text-gray-400 leading-relaxed font-medium">{feature.desc}</p>
@@ -228,8 +228,8 @@ export default function LandingPage() {
               <motion.ul variants={containerVariants} className="space-y-4">
                 {['Maritime & Port Monitoring', 'Agriculture & Crop Yields', 'Defense & Intelligence', 'Disaster Response'].map((item, i) => (
                   <motion.li key={i} variants={itemVariants} className="flex items-center gap-3 text-gray-800 dark:text-gray-200 font-bold">
-                    <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center shrink-0 shadow-inner dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
-                      <div className="w-2.5 h-2.5 rounded-full bg-blue-600 dark:bg-blue-400 shadow-sm" />
+                    <div className="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center shrink-0 shadow-inner dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
+                      <div className="w-2.5 h-2.5 rounded-full bg-indigo-600 dark:bg-indigo-400 shadow-sm" />
                     </div>
                     {item}
                   </motion.li>
@@ -243,8 +243,8 @@ export default function LandingPage() {
               transition={springTransition}
               className="flex-1 w-full relative"
             >
-              <div className="absolute -inset-10 bg-indigo-400/20 dark:bg-indigo-600/30 rounded-full blur-[100px] opacity-50 mix-blend-multiply dark:mix-blend-screen pointer-events-none" />
-              <div className="aspect-video bg-white/60 dark:bg-slate-900/40 backdrop-blur-3xl border border-white/60 dark:border-white/10 rounded-[2rem] shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_20px_50px_rgb(0,0,0,0.1)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden relative group p-2">
+              <div className="absolute -inset-10 bg-indigo-400/20 dark:bg-violet-600/30 rounded-full blur-[100px] opacity-50 mix-blend-multiply dark:mix-blend-screen pointer-events-none" />
+              <div className="aspect-video bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl border border-white/50 dark:border-white/10 rounded-[2rem] shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_20px_50px_rgb(0,0,0,0.06)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden relative group p-2">
                 <img 
                   src="https://images.unsplash.com/photo-1498084991519-c4bef3d8cb73?q=80&w=2070&auto=format&fit=crop" 
                   alt="Data mapping" 
@@ -264,9 +264,9 @@ export default function LandingPage() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={springTransition}
-            className="w-24 h-24 bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-[2rem] border border-white dark:border-white/10 flex items-center justify-center mx-auto mb-8 shadow-[0_10px_30px_rgb(0,0,0,0.05)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_10px_30px_rgba(0,0,0,0.5)]"
+            className="w-24 h-24 bg-white/60 dark:bg-slate-800/80 backdrop-blur-2xl rounded-[2rem] border border-white/60 dark:border-white/10 flex items-center justify-center mx-auto mb-8 shadow-[0_10px_30px_rgb(0,0,0,0.03)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_10px_30px_rgba(0,0,0,0.5)]"
           >
-            <ShieldCheck className="w-12 h-12 text-blue-600 dark:text-blue-400" />
+            <ShieldCheck className="w-12 h-12 text-indigo-600 dark:text-indigo-400" />
           </motion.div>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
@@ -296,9 +296,9 @@ export default function LandingPage() {
               <motion.div 
                 key={index}
                 variants={itemVariants}
-                className="p-8 bg-white/40 dark:bg-slate-900/40 backdrop-blur-3xl border border-white/60 dark:border-white/10 rounded-3xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] text-center flex flex-col items-center justify-center hover:bg-white/60 dark:hover:bg-slate-900/60 transition-colors"
+                className="p-8 bg-white/30 dark:bg-slate-900/40 backdrop-blur-2xl border border-white/50 dark:border-white/10 rounded-3xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] text-center flex flex-col items-center justify-center hover:bg-white/50 dark:hover:bg-slate-900/60 transition-colors"
               >
-                <Lock className="w-6 h-6 text-blue-500 dark:text-blue-400 mb-4" />
+                <Lock className="w-6 h-6 text-indigo-500 dark:text-indigo-400 mb-4" />
                 <h4 className="font-bold text-gray-900 dark:text-white tracking-tight">{cert}</h4>
               </motion.div>
             ))}
@@ -315,18 +315,18 @@ export default function LandingPage() {
           transition={springTransition}
           className="max-w-5xl mx-auto px-8 text-center relative z-10"
         >
-          <div className="bg-blue-600 dark:bg-blue-700 rounded-[3rem] p-16 shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_20px_50px_rgba(37,99,235,0.3)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden relative">
+          <div className="bg-gradient-to-tr from-indigo-600 to-violet-700 rounded-[3rem] p-16 shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_20px_50px_rgba(79,70,229,0.3)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden relative">
             <div className="absolute inset-0 bg-[url('https://upload.wikimedia.org/wikipedia/commons/b/ba/The_earth_at_night.jpg')] opacity-20 bg-cover bg-center mix-blend-overlay" />
             
             <h2 className="text-5xl font-extrabold text-white mb-6 tracking-tight relative z-10">Ready to see the unseen?</h2>
-            <p className="text-xl text-blue-100 mb-10 font-medium max-w-2xl mx-auto relative z-10">
+            <p className="text-xl text-indigo-100 mb-10 font-medium max-w-2xl mx-auto relative z-10">
               Join the enterprise teams using SatQuery AI to revolutionize their geospatial workflows today.
             </p>
             <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => navigate('/login')}
-              className="bg-white text-blue-600 dark:text-blue-700 px-10 py-5 rounded-full text-xl font-bold shadow-[0_10px_30px_rgba(0,0,0,0.2)] flex items-center gap-2 mx-auto relative z-10 hover:bg-gray-50 transition-colors group"
+              className="bg-white text-indigo-600 px-10 py-5 rounded-full text-xl font-bold shadow-[0_10px_30px_rgba(0,0,0,0.2)] flex items-center gap-2 mx-auto relative z-10 hover:bg-gray-50 transition-colors group"
             >
               Sign In to Platform <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </motion.button>
@@ -335,12 +335,12 @@ export default function LandingPage() {
       </section>
 
       {/* World-Class Apple HIG Footer */}
-      <footer className="bg-white/40 dark:bg-slate-950/60 backdrop-blur-3xl border-t border-gray-200/50 dark:border-white/10 py-16 transition-colors">
+      <footer className="bg-white/40 dark:bg-slate-950/60 backdrop-blur-2xl border-t border-white/50 dark:border-white/10 py-16 transition-colors">
         <div className="max-w-7xl mx-auto px-8">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-10 mb-16">
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center shadow-md">
+                <div className="w-9 h-9 bg-indigo-600 rounded-full flex items-center justify-center shadow-md">
                   <Globe className="w-5 h-5 text-white" />
                 </div>
                 <span className="font-extrabold text-xl tracking-tight text-gray-900 dark:text-white">SatQuery AI</span>
@@ -353,30 +353,30 @@ export default function LandingPage() {
             <div>
               <h4 className="font-extrabold text-gray-900 dark:text-white text-sm uppercase tracking-wider mb-5">Product</h4>
               <ul className="space-y-3 text-sm font-semibold text-gray-500 dark:text-gray-400">
-                <li><a href="#features" className="hover:text-blue-600 dark:hover:text-white transition-colors">Spatial VQA</a></li>
-                <li><a href="#features" className="hover:text-blue-600 dark:hover:text-white transition-colors">Text Grounding</a></li>
-                <li><a href="#features" className="hover:text-blue-600 dark:hover:text-white transition-colors">Bi-Temporal Change</a></li>
-                <li><a href="#features" className="hover:text-blue-600 dark:hover:text-white transition-colors">SAR Fusion</a></li>
+                <li><a href="#features" className="hover:text-indigo-600 dark:hover:text-white transition-colors">Spatial VQA</a></li>
+                <li><a href="#features" className="hover:text-indigo-600 dark:hover:text-white transition-colors">Text Grounding</a></li>
+                <li><a href="#features" className="hover:text-indigo-600 dark:hover:text-white transition-colors">Bi-Temporal Change</a></li>
+                <li><a href="#features" className="hover:text-indigo-600 dark:hover:text-white transition-colors">SAR Fusion</a></li>
               </ul>
             </div>
 
             <div>
               <h4 className="font-extrabold text-gray-900 dark:text-white text-sm uppercase tracking-wider mb-5">Resources</h4>
               <ul className="space-y-3 text-sm font-semibold text-gray-500 dark:text-gray-400">
-                <li><a href="#" className="hover:text-blue-600 dark:hover:text-white transition-colors">Documentation</a></li>
-                <li><a href="#" className="hover:text-blue-600 dark:hover:text-white transition-colors">API Reference</a></li>
-                <li><a href="#" className="hover:text-blue-600 dark:hover:text-white transition-colors">ISRO Guidelines</a></li>
-                <li><a href="#" className="hover:text-blue-600 dark:hover:text-white transition-colors">Research Papers</a></li>
+                <li><a href="#" className="hover:text-indigo-600 dark:hover:text-white transition-colors">Documentation</a></li>
+                <li><a href="#" className="hover:text-indigo-600 dark:hover:text-white transition-colors">API Reference</a></li>
+                <li><a href="#" className="hover:text-indigo-600 dark:hover:text-white transition-colors">ISRO Guidelines</a></li>
+                <li><a href="#" className="hover:text-indigo-600 dark:hover:text-white transition-colors">Research Papers</a></li>
               </ul>
             </div>
 
             <div>
               <h4 className="font-extrabold text-gray-900 dark:text-white text-sm uppercase tracking-wider mb-5">Enterprise</h4>
               <ul className="space-y-3 text-sm font-semibold text-gray-500 dark:text-gray-400">
-                <li><a href="#security" className="hover:text-blue-600 dark:hover:text-white transition-colors">Security & SOC2</a></li>
-                <li><a href="#" className="hover:text-blue-600 dark:hover:text-white transition-colors">Air-gapped Setup</a></li>
-                <li><a href="#" className="hover:text-blue-600 dark:hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-blue-600 dark:hover:text-white transition-colors">Terms of Service</a></li>
+                <li><a href="#security" className="hover:text-indigo-600 dark:hover:text-white transition-colors">Security & SOC2</a></li>
+                <li><a href="#" className="hover:text-indigo-600 dark:hover:text-white transition-colors">Air-gapped Setup</a></li>
+                <li><a href="#" className="hover:text-indigo-600 dark:hover:text-white transition-colors">Privacy Policy</a></li>
+                <li><a href="#" className="hover:text-indigo-600 dark:hover:text-white transition-colors">Terms of Service</a></li>
               </ul>
             </div>
           </div>
