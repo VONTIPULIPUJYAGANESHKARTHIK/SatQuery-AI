@@ -17,12 +17,21 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Set work directory
 WORKDIR /app
 
-# Install dependencies
-COPY requirements.txt /app/
+# Copy the entire build context into a temporary directory
+COPY . /tmp_build/
+
+# Move the relevant files to /app
+# If built from root, backend files are in /tmp_build/backend/
+# If built from backend, files are directly in /tmp_build/
+RUN if [ -d "/tmp_build/backend" ]; then \
+        mv /tmp_build/backend/* /app/ || true; \
+    else \
+        mv /tmp_build/* /app/ || true; \
+    fi && rm -rf /tmp_build
+
+# Now install dependencies (it will definitely be at /app/requirements.txt now)
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Copy project
-COPY . /app/
 
 # Collect static files
 RUN python manage.py collectstatic --noinput
